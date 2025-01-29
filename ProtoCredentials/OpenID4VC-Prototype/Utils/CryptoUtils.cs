@@ -12,8 +12,7 @@ namespace OpenID4VC_Prototype.Utils
             rsa.ImportRSAPrivateKey(Convert.FromBase64String(privateKeyBase64), out _);
 
             var data = $"{credential.IssuerDID}:{credential.HolderDID}:{credential.CredentialType}";
-            var signatureBytes = rsa.SignData
-            (Encoding.UTF8.GetBytes(data), HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
+            var signatureBytes = rsa.SignData(Encoding.UTF8.GetBytes(data), HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
 
             return Convert.ToBase64String(signatureBytes);
         }
@@ -26,8 +25,7 @@ namespace OpenID4VC_Prototype.Utils
             var data = $"{credential.IssuerDID}:{credential.HolderDID}:{credential.CredentialType}";
             var signatureBytes = Convert.FromBase64String(credential.Signature);
 
-            return rsa.VerifyData(Encoding.UTF8.GetBytes(data), signatureBytes, HashAlgorithmName.SHA256,
-                RSASignaturePadding.Pkcs1);
+            return rsa.VerifyData(Encoding.UTF8.GetBytes(data), signatureBytes, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
         }
     }
 }

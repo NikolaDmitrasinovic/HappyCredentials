@@ -5,8 +5,7 @@ namespace OpenID4VC_Prototype.Services
 {
     public class IssuerService
     {
-        public VerifiableCredential IssuerCredential
-            (DecentralizedIdentifier issuer, string holderDID)
+        public VerifiableCredential IssuerCredential(DecentralizedIdentifier issuer, string holderDID)
         {
             var credential = new VerifiableCredential
             {
