@@ -20,13 +20,11 @@ namespace OpenID4VC_Prototype
             var credential = issuerService.IssuerCredential
                 (issuer, holder.DID);
 
-            Console.WriteLine($"Issuer Credential: {credential.CredentialType}" +
-                              $" for {credential.HolderDID}");
+            Console.WriteLine($"Issuer Credential: {credential.CredentialType} for {credential.HolderDID}");
 
             // Verifier validates the credential
             var verifierService = new VerifierService();
-            var isValid = verifierService.ValidateCredential
-                (credential, holder.DID);
+            var isValid = verifierService.ValidateCredential(credential, issuer.PublicKey);
 
             Console.WriteLine($"Credential Valid: {isValid}");
         }
