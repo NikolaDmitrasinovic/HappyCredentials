@@ -1,3 +1,3 @@
 # HappyCredentials
 ## ProtoCredentials
-Small Console app that ilustrates OpenId4VC flow
+Small Console app that illustrates OpenId4VC flow
