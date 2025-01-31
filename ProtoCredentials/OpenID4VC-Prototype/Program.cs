@@ -19,9 +19,13 @@ Console.WriteLine($"Issuer Credential: {credential.CredentialType} for {credenti
 // Verifier validates the credential
 WriteTitle("Verifier validates the credential");
 var verifierService = new VerifierService();
-var isValid = verifierService.ValidateCredential(credential, issuer.PublicKey);
+var validationResult = verifierService.ValidateCredential(credential, issuer.PublicKey);
 
-Console.WriteLine($"Credential Valid: {isValid}");
+if (!validationResult.IsValid)
+    Console.WriteLine($"Verification failed: {validationResult.ErrorMessage}.");
+else
+    Console.WriteLine("Credential is valid!");
+
 return;
 
 static void WriteTitle(string title)
