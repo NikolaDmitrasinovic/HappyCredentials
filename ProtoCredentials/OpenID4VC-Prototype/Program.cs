@@ -22,13 +22,9 @@ var verifierService = new VerifierService();
 var validationResult = verifierService.ValidateCredential(credential, issuer.PublicKey);
 
 if (!validationResult.IsValid)
-{
     Console.WriteLine($"Verification failed: {validationResult.ErrorMessage}.");
-}
 else
-{
     Console.WriteLine("Credential is valid!");
-}
 
 return;
 
