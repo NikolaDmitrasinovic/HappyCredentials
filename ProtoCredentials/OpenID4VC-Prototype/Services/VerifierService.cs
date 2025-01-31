@@ -24,16 +24,4 @@ namespace OpenID4VC_Prototype.Services
                 : new ValidationResult(false, "Signature verification failed");
         }
     }
-
-    public class ValidationResult
-    {
-        public bool IsValid { get; set; }
-        public string ErrorMessage { get; set; }
-
-        public ValidationResult(bool isValid, string errorMessage = "")
-        {
-            IsValid = isValid;
-            ErrorMessage = errorMessage;
-        }
-    }
 }
