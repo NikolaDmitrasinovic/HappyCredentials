@@ -3,10 +3,10 @@ using OpenID4VC_Prototype.Models;
 
 namespace OpenID4VC_Prototype.Utils
 {
-    public class DIDGenerator
+    public class DIdGenerator
     {
-        // Simplified DID generation for presentation purpose
-        public static DecentralizedIdentifier GenerateDID()
+        // Simplified DId generation for presentation purpose
+        public static DecentralizedIdentifier GenerateDId()
         {
             var rsa = RSA.Create(2048);
             var publicKey = Convert.ToBase64String(rsa.ExportRSAPublicKey());
@@ -14,7 +14,7 @@ namespace OpenID4VC_Prototype.Utils
             
             return new DecentralizedIdentifier
             {
-                DID = "did:example:" + Guid.NewGuid(),
+                DId = "did:example:" + Guid.NewGuid(),
                 PublicKey = publicKey,
                 PrivateKey = privateKey
             };

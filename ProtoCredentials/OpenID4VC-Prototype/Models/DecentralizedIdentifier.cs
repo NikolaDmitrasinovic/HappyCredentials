@@ -2,8 +2,8 @@
 {
     public class DecentralizedIdentifier
     {
-        public string DID { get; set; }
-        public string PublicKey { get; set; }
-        public string PrivateKey { get; set; }
+        public string DId { get; set; } = "";
+        public string PublicKey { get; set; } = "";
+        public string PrivateKey { get; set; } = "";
     }
 }
