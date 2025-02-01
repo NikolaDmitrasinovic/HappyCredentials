@@ -18,13 +18,26 @@ Console.WriteLine($"Issuer Credential: {credential.CredentialType} for {credenti
 
 // Verifier validates the credential
 WriteTitle("Verifier validates the credential");
-var verifierService = new VerifierService();
-var validationResult = verifierService.ValidateCredential(credential, issuer.PublicKey);
 
-if (!validationResult.IsValid)
-    Console.WriteLine($"Verification failed: {validationResult.ErrorMessage}.");
-else
-    Console.WriteLine("Credential is valid!");
+
+try
+{
+    var verifierService = new VerifierService();
+    var validationResult = verifierService.ValidateCredential(credential, issuer.PublicKey);
+
+    if (!validationResult.IsValid)
+        Console.WriteLine($"Verification failed: {validationResult.ErrorMessage}.");
+    else
+        Console.WriteLine("Credential is valid!");
+}
+catch (ArgumentException ex)
+{
+    Console.WriteLine($"Validation error: {ex.Message}");
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Unexpected error: {ex.Message}");
+}
 
 return;
 
