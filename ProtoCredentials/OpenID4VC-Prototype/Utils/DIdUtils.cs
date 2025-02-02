@@ -8,7 +8,7 @@ namespace OpenID4VC_Prototype.Utils
         {
             if (!string.IsNullOrEmpty(dId))
             {
-                string patern = @"^did:[a-zA-Z0-9]+:[a-zA-Z0-9\-\.\_]+$";
+                string patern = @"^did:[a-zA-Z0-9]+:[a-zA-Z0-9\-\._]+$";
                 return Regex.IsMatch(dId, patern);
             }
 
