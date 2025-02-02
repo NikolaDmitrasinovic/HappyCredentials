@@ -8,6 +8,8 @@ namespace OpenID4VC_Prototype.Utils
     {
         public static string SignData(VerifiableCredential credential, string privateKeyBase64)
         {
+            if (!DIdUtils.IsValidDId(credential.HolderDId)) throw new ArgumentNullException($"Invalid holder DID: {credential.HolderDId}");
+
             var rsa = RSA.Create();
             rsa.ImportRSAPrivateKey(Convert.FromBase64String(privateKeyBase64), out _);
 
@@ -22,6 +24,11 @@ namespace OpenID4VC_Prototype.Utils
             if (string.IsNullOrEmpty(publicKeyBase64) || !IsBase64String(publicKeyBase64))
             {
                 throw new ArgumentException("Invalid public key format!");
+            }
+
+            if (!DIdUtils.IsValidDId(credential.IssuerDId))
+            {
+                throw new ArgumentException($"Invalid issuer DID: {credential.IssuerDId}");
             }
 
             var rsa = RSA.Create();
