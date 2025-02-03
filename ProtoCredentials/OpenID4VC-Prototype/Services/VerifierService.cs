@@ -15,8 +15,8 @@ namespace OpenID4VC_Prototype.Services
 
             var isValid = CryptoUtils.VerifySignature(credential, issuerPublicKey);
 
-            return isValid 
-                ? new ValidationResult(true) 
+            return isValid
+                ? new ValidationResult(true)
                 : new ValidationResult(false, "Signature verification failed");
         }
     }
