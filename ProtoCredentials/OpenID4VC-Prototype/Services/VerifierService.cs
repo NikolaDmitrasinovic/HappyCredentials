@@ -30,7 +30,7 @@ namespace OpenID4VC_Prototype.Services
             if (credential == null) return false;
             if (!DIdUtils.IsValidDId(credential.IssuerDId)) return false;
             if (!DIdUtils.IsValidDId(credential.HolderDId)) return false;
-            if (!DIdUtils.IsValidDId(credential.CredentialType)) return false;
+            if (string.IsNullOrEmpty(credential.CredentialType)) return false;
             if (credential.Claims ==  null) return false;
             if (string.IsNullOrEmpty(credential.Signature)) return false;
 
