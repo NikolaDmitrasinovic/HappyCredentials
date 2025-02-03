@@ -5,9 +5,9 @@ var issuer = DIdGenerator.GenerateDId();
 var holder = DIdGenerator.GenerateDId();
 var verifier = DIdGenerator.GenerateDId();
 
-Console.WriteLine($"Issuer DId: {issuer.DId}");
-Console.WriteLine($"Holder DId: {holder.DId}");
-Console.WriteLine($"Verifier DId: {verifier.DId}");
+Console.WriteLine($"Issuer DID: {issuer.DId}");
+Console.WriteLine($"Holder DID: {holder.DId}");
+Console.WriteLine($"Verifier DID: {verifier.DId}");
 
 // Issuing a verifiable credential
 WriteTitle("Issuing verifiable credential");
