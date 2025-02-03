@@ -1,6 +1,12 @@
 ﻿using OpenID4VC_Prototype.Models;
 using OpenID4VC_Prototype.Services;
 using OpenID4VC_Prototype.Utils;
+using Serilog;
+
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .Enrich.WithProperty("Application", "OpenID4VC Prototype")
+    .CreateLogger();
 
 var issuer = DIdGenerator.GenerateDId();
 var holder = DIdGenerator.GenerateDId();
