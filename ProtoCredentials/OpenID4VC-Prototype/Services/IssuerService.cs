@@ -8,7 +8,7 @@ namespace OpenID4VC_Prototype.Services
         public VerifiableCredential IssuerCredential(DecentralizedIdentifier issuer, string holderDId)
         {
             if (!DIdUtils.IsValidDId(holderDId))
-                throw new ArgumentNullException($"Invalid holder DID: {holderDId}");
+                throw new ArgumentException($"Invalid holder DID: {holderDId}");
 
             var credential = new VerifiableCredential
             {

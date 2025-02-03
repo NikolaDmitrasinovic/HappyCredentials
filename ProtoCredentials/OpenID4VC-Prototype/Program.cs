@@ -1,4 +1,5 @@
-﻿using OpenID4VC_Prototype.Services;
+﻿using OpenID4VC_Prototype.Models;
+using OpenID4VC_Prototype.Services;
 using OpenID4VC_Prototype.Utils;
 
 var issuer = DIdGenerator.GenerateDId();
@@ -11,10 +12,22 @@ Console.WriteLine($"Verifier DID: {verifier.DId}");
 
 // Issuing a verifiable credential
 WriteTitle("Issuing verifiable credential");
-var issuerService = new IssuerService();
-var credential = issuerService.IssuerCredential(issuer, holder.DId);
+var credential = new VerifiableCredential();
+try
+{
+    var issuerService = new IssuerService();
+    credential = issuerService.IssuerCredential(issuer, holder.DId);
 
-Console.WriteLine($"Issuer Credential: {credential.CredentialType} for {credential.HolderDId}");
+    Console.WriteLine($"Issuer Credential: {credential.CredentialType} for {credential.HolderDId}");
+}
+catch (ArgumentException ex)
+{
+    Console.WriteLine($"Issuing credential failed: {ex.Message}");
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Unexpected error: {ex.Message}");
+}
 
 // Verifier validates the credential
 WriteTitle("Verifier validates the credential");
