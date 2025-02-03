@@ -11,7 +11,7 @@ namespace OpenID4VC_Prototype.Utils
             var rsa = RSA.Create(2048);
             var publicKey = Convert.ToBase64String(rsa.ExportRSAPublicKey());
             var privateKey = Convert.ToBase64String(rsa.ExportRSAPrivateKey());
-            
+
             return new DecentralizedIdentifier
             {
                 DId = "did:example:" + Guid.NewGuid(),

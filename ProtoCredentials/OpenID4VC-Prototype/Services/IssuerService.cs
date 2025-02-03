@@ -7,6 +7,9 @@ namespace OpenID4VC_Prototype.Services
     {
         public VerifiableCredential IssuerCredential(DecentralizedIdentifier issuer, string holderDId)
         {
+            if (!DIdUtils.IsValidDId(holderDId))
+                throw new ArgumentException($"Invalid holder DID: {holderDId}");
+
             var credential = new VerifiableCredential
             {
                 IssuerDId = issuer.DId,
@@ -20,6 +23,7 @@ namespace OpenID4VC_Prototype.Services
             };
 
             credential.Signature = CryptoUtils.SignData(credential, issuer.PrivateKey);
+
             return credential;
         }
     }
