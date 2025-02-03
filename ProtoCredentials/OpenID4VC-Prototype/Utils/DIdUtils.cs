@@ -7,8 +7,8 @@ namespace OpenID4VC_Prototype.Utils
         public static bool IsValidDId(string dId)
         {
             if (!string.IsNullOrEmpty(dId))
-            {
-                string patern = @"^did:[a-zA-Z0-9]+:[a-zA-Z0-9\-\._]+$";
+            {                
+                string patern = @"^did:[a-zA-Z0-9]+:[a-zA-Z0-9\-\._]+$"; // did:method:uniqueIdentifier
                 return Regex.IsMatch(dId, patern);
             }
 
