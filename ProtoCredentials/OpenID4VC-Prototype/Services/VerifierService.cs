@@ -13,11 +13,6 @@ namespace OpenID4VC_Prototype.Services
             if (string.IsNullOrEmpty(issuerPublicKey))
                 return new ValidationResult(false, "Issuer public key is missing");
 
-            if (!DIdUtils.IsValidDId(credential.IssuerDId))
-            {
-                throw new ArgumentException($"Invalid issuer DID: {credential.IssuerDId}");
-            }
-
             var isValid = CryptoUtils.VerifySignature(credential, issuerPublicKey);
 
             return isValid 

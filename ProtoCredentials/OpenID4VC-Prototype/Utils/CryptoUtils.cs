@@ -20,9 +20,7 @@ namespace OpenID4VC_Prototype.Utils
         public static bool VerifySignature(VerifiableCredential credential, string publicKeyBase64)
         {
             if (string.IsNullOrEmpty(publicKeyBase64) || !IsBase64String(publicKeyBase64))
-            {
                 throw new ArgumentException("Invalid public key format!");
-            }            
 
             var rsa = RSA.Create();
             rsa.ImportRSAPublicKey(Convert.FromBase64String(publicKeyBase64), out _);
