@@ -7,7 +7,7 @@ namespace OpenID4VC_Prototype.Services
     {
         public ValidationResult ValidateCredential(VerifiableCredential credential, string issuerPublicKey)
         {
-            if (credential == null)
+            if (!IsValidCredential(credential))
                 return new ValidationResult(false, "Credential is null");
 
             if (string.IsNullOrEmpty(issuerPublicKey))
@@ -23,6 +23,18 @@ namespace OpenID4VC_Prototype.Services
             return isValid 
                 ? new ValidationResult(true) 
                 : new ValidationResult(false, "Signature verification failed");
-        }        
+        }
+
+        private static bool IsValidCredential(VerifiableCredential credential)
+        {
+            if (credential == null) return false;
+            if (!DIdUtils.IsValidDId(credential.IssuerDId)) return false;
+            if (!DIdUtils.IsValidDId(credential.HolderDId)) return false;
+            if (!DIdUtils.IsValidDId(credential.CredentialType)) return false;
+            if (credential.Claims ==  null) return false;
+            if (string.IsNullOrEmpty(credential.Signature)) return false;
+
+            return true;
+        }
     }
 }
