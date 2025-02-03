@@ -8,7 +8,7 @@ namespace OpenID4VC_Prototype.Services
         public ValidationResult ValidateCredential(VerifiableCredential credential, string issuerPublicKey)
         {
             if (!CredentialUtils.IsValidCredential(credential))
-                return new ValidationResult(false, "Credential is null");
+                return new ValidationResult(false, "Invalid Credential provided");
 
             if (string.IsNullOrEmpty(issuerPublicKey))
                 return new ValidationResult(false, "Issuer public key is missing");
