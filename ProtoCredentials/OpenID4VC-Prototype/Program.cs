@@ -38,10 +38,9 @@ try
     var verifierService = new VerifierService();
     var validationResult = verifierService.ValidateCredential(credential, issuer.PublicKey);
 
-    if (!validationResult.IsValid)
-        Console.WriteLine($"Verification failed: {validationResult.ErrorMessage}.");
-    else
-        Console.WriteLine("Credential is valid!");
+    Console.WriteLine(!validationResult.IsValid
+        ? $"Verification failed: {validationResult.ErrorMessage}."
+        : "Credential is valid!");
 }
 catch (ArgumentException ex)
 {
