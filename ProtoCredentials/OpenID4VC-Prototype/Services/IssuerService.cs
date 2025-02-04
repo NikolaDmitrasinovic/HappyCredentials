@@ -1,5 +1,6 @@
 ﻿using OpenID4VC_Prototype.Models;
 using OpenID4VC_Prototype.Utils;
+using Serilog;
 
 namespace OpenID4VC_Prototype.Services
 {
@@ -7,6 +8,8 @@ namespace OpenID4VC_Prototype.Services
     {
         public VerifiableCredential IssuerCredential(DecentralizedIdentifier issuer, string holderDId)
         {
+            Log.Information($"Issuing credential for holder DID: {holderDId}");
+
             if (!DIdUtils.IsValidDId(holderDId))
                 throw new ArgumentException($"Invalid holder DID: {holderDId}");
 
