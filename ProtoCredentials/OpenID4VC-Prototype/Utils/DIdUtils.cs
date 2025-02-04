@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using Serilog;
+using System.Text.RegularExpressions;
 
 namespace OpenID4VC_Prototype.Utils
 {
@@ -6,11 +7,12 @@ namespace OpenID4VC_Prototype.Utils
     {
         public static bool IsValidDId(string dId)
         {
-            if (string.IsNullOrEmpty(dId)) return false;
+            var isValid = Regex.IsMatch(dId, @"^did:[a-zA-Z0-9]+:[a-zA-Z0-9\-\._]+$");
 
-            const string pattern = @"^did:[a-zA-Z0-9]+:[a-zA-Z0-9\-\._]+$";
+            if (!isValid)
+                Log.Warning($"Invalid DID format detected: {dId}");
 
-            return Regex.IsMatch(dId, pattern);
+            return isValid;
         }
     }
 }
