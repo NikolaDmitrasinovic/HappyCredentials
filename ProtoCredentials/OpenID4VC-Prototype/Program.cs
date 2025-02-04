@@ -5,6 +5,7 @@ using Serilog;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
+    .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
     .Enrich.WithProperty("Application", "OpenID4VC Prototype")
     .CreateLogger();
 
