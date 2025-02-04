@@ -23,39 +23,37 @@ var credential = new VerifiableCredential();
 try
 {
     var issuerService = new IssuerService();
-    credential = issuerService.IssuerCredential(issuer, holder.DId);
+    credential = issuerService.IssuerCredential(issuer, "holder.DId");
 
     Console.WriteLine($"Issuer Credential: {credential.CredentialType} for {credential.HolderDId}");
 }
 catch (ArgumentException ex)
 {
-    Console.WriteLine($"Issuing credential failed: {ex.Message}");
+    Log.Warning(ex, $"Issuing credential failed: {ex.Message}");
 }
 catch (Exception ex)
 {
-    Console.WriteLine($"Unexpected error: {ex.Message}");
+    Log.Fatal(ex, $"Unexpected error: {ex.Message}");
 }
 
 // Verifier validates the credential
 WriteTitle("Verifier validates the credential");
-
-
 try
 {
     var verifierService = new VerifierService();
     var validationResult = verifierService.ValidateCredential(credential, issuer.PublicKey);
 
-    Console.WriteLine(!validationResult.IsValid
-        ? $"Verification failed: {validationResult.ErrorMessage}."
-        : "Credential is valid!");
+    Log.Information(validationResult.IsValid
+        ? "Credential is valid!"
+        : $"Verification failed: {validationResult.ErrorMessage}");
 }
 catch (ArgumentException ex)
 {
-    Console.WriteLine($"Validation error: {ex.Message}");
+    Log.Warning(ex, $"Validation error: {ex.Message}");
 }
 catch (Exception ex)
 {
-    Console.WriteLine($"Unexpected error: {ex.Message}");
+    Log.Fatal(ex, $"Unexpected error: {ex.Message}");
 }
 
 return;
