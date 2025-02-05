@@ -2,25 +2,24 @@
 using OpenID4VC_Prototype.Utils;
 using Serilog;
 
-namespace OpenID4VC_Prototype.Services
+namespace OpenID4VC_Prototype.Services;
+
+public class VerifierService
 {
-    public class VerifierService
+    public ValidationResult ValidateCredential(VerifiableCredential credential, string issuerPublicKey)
     {
-        public ValidationResult ValidateCredential(VerifiableCredential credential, string issuerPublicKey)
-        {
-            Log.Information($"Verifing credential for holder DID: {credential.HolderDId}");
+        Log.Information($"Verifying credential for holder DID: {credential.HolderDId}");
 
-            if (!CredentialUtils.IsValidCredential(credential))
-                return new ValidationResult(false, "Invalid Credential provided");
+        if (!CredentialUtils.IsValidCredential(credential))
+            return new ValidationResult(false, "Invalid Credential provided");
 
-            if (string.IsNullOrEmpty(issuerPublicKey))
-                return new ValidationResult(false, "Issuer public key is missing");
+        if (string.IsNullOrEmpty(issuerPublicKey))
+            return new ValidationResult(false, "Issuer public key is missing");
 
-            var isValid = CryptoUtils.VerifySignature(credential, issuerPublicKey);
+        var isValid = CryptoUtils.VerifySignature(credential, issuerPublicKey);
 
-            return isValid
-                ? new ValidationResult(true)
-                : new ValidationResult(false, "Signature verification failed");
-        }
+        return isValid
+            ? new ValidationResult(true)
+            : new ValidationResult(false, "Signature verification failed");
     }
 }

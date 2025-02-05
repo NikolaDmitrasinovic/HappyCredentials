@@ -1,9 +1,8 @@
-﻿namespace OpenID4VC_Prototype.Models
+﻿namespace OpenID4VC_Prototype.Models;
+
+public class DecentralizedIdentifier
 {
-    public class DecentralizedIdentifier
-    {
-        public string DId { get; set; } = "";
-        public string PublicKey { get; set; } = "";
-        public string PrivateKey { get; set; } = "";
-    }
+    public required string DId { get; set; }
+    public required string PublicKey { get; set; }
+    public required string PrivateKey { get; set; }
 }
