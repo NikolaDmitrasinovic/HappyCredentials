@@ -2,32 +2,31 @@
 using OpenID4VC_Prototype.Utils;
 using Serilog;
 
-namespace OpenID4VC_Prototype.Services
+namespace OpenID4VC_Prototype.Services;
+
+public class IssuerService
 {
-    public class IssuerService
+    public VerifiableCredential IssueCredential(DecentralizedIdentifier issuer, string holderDId)
     {
-        public VerifiableCredential IssuerCredential(DecentralizedIdentifier issuer, string holderDId)
+        Log.Information($"Issuing credential for holder DID: {holderDId}");
+
+        if (!DIdUtils.IsValidDId(holderDId))
+            throw new ArgumentException($"Invalid holder DID: {holderDId}");
+
+        var credential = new VerifiableCredential
         {
-            Log.Information($"Issuing credential for holder DID: {holderDId}");
-
-            if (!DIdUtils.IsValidDId(holderDId))
-                throw new ArgumentException($"Invalid holder DID: {holderDId}");
-
-            var credential = new VerifiableCredential
+            IssuerDId = issuer.DId,
+            HolderDId = holderDId,
+            CredentialType = "Diploma",
+            Claims = new Dictionary<string, string>
             {
-                IssuerDId = issuer.DId,
-                HolderDId = holderDId,
-                CredentialType = "Diploma",
-                Claims = new Dictionary<string, string>
-                {
-                    { "University", "PMF" },
-                    { "Curriculum", "Mathematics" }
-                }
-            };
+                { "University", "PMF" },
+                { "Curriculum", "Mathematics" }
+            }
+        };
 
-            credential.Signature = CryptoUtils.SignData(credential, issuer.PrivateKey);
+        credential.Signature = CryptoUtils.SignData(credential, issuer.PrivateKey);
 
-            return credential;
-        }
+        return credential;
     }
 }

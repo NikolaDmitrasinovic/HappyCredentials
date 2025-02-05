@@ -23,9 +23,9 @@ var credential = new VerifiableCredential();
 try
 {
     var issuerService = new IssuerService();
-    credential = issuerService.IssuerCredential(issuer, holder.DId);
+    credential = issuerService.IssueCredential(issuer, holder.DId);
 
-    Console.WriteLine($"Issuer Credential: {credential.CredentialType} for {credential.HolderDId}");
+    Console.WriteLine($"Issued Credential: {credential.CredentialType} for {credential.HolderDId}");
 }
 catch (ArgumentException ex)
 {
