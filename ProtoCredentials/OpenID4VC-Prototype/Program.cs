@@ -25,7 +25,7 @@ try
     var issuerService = new IssuerService();
     credential = issuerService.IssueCredential(issuer, holder.DId);
 
-    Console.WriteLine($"Issuer Credential: {credential.CredentialType} for {credential.HolderDId}");
+    Console.WriteLine($"Issued Credential: {credential.CredentialType} for {credential.HolderDId}");
 }
 catch (ArgumentException ex)
 {
