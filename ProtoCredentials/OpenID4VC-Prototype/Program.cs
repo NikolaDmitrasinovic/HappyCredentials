@@ -1,9 +1,16 @@
-﻿using OpenID4VC_Prototype.Core.Models;
+﻿using Microsoft.Extensions.Hosting;
+using OpenID4VC_Prototype.Core.Models;
 using OpenID4VC_Prototype.Logging;
 using OpenID4VC_Prototype.Services;
 using Serilog;
 
 LogConfigurator.Configure();
+
+var builder = Host.CreateDefaultBuilder(args)
+    .ConfigureServices((hostContext, services) =>
+    {
+
+    });
 
 var cryptoService = new CryptoService();
 var issuerService = new IssuerService(cryptoService);
