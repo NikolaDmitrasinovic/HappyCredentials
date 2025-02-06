@@ -1,6 +1,7 @@
 ﻿using Serilog;
 
 namespace OpenID4VC_Prototype.Logging;
+
 public static class LogConfigurator
 {
     public static void Configure()
