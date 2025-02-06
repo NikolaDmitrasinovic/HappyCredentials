@@ -26,7 +26,7 @@ public class DIdService
         throw new NotImplementedException();
     }
 
-    private static DecentralizedIdentifier GenerateExampleDId()
+    private DecentralizedIdentifier GenerateExampleDId()
     {
         var rsa = RSA.Create(2048);
         var publicKey = Convert.ToBase64String(rsa.ExportRSAPublicKey());
