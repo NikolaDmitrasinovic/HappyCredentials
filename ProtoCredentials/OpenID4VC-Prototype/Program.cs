@@ -8,8 +8,8 @@ LogConfigurator.Configure();
 var cryptoService = new CryptoService();
 var issuerService = new IssuerService(cryptoService);
 var verifierService = new VerifierService(cryptoService);
-
 var dIdService = new DIdService();
+
 var issuer = dIdService.GenerateDId();
 var holder = dIdService.GenerateDId();
 var verifier = dIdService.GenerateDId();
