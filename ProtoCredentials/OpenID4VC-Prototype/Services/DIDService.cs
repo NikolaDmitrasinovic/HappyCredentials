@@ -1,9 +1,9 @@
 ﻿using System.Security.Cryptography;
 using OpenID4VC_Prototype.Core.Models;
 
-namespace OpenID4VC_Prototype.Utils;
+namespace OpenID4VC_Prototype.Services;
 
-public class DIdGenerator
+public class DIdService
 {
     // Simplified DId generation for presentation purpose
     public static DecentralizedIdentifier GenerateDId()

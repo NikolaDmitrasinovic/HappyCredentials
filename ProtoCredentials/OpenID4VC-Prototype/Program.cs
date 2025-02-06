@@ -1,14 +1,13 @@
 ﻿using OpenID4VC_Prototype.Core.Models;
 using OpenID4VC_Prototype.Logging;
 using OpenID4VC_Prototype.Services;
-using OpenID4VC_Prototype.Utils;
 using Serilog;
 
 LogConfigurator.Configure();
 
-var issuer = DIdGenerator.GenerateDId();
-var holder = DIdGenerator.GenerateDId();
-var verifier = DIdGenerator.GenerateDId();
+var issuer = DIdService.GenerateDId();
+var holder = DIdService.GenerateDId();
+var verifier = DIdService.GenerateDId();
 
 Console.WriteLine($"Issuer DID: {issuer.DId}");
 Console.WriteLine($"Holder DID: {holder.DId}");
