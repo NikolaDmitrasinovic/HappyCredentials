@@ -4,8 +4,10 @@ using Serilog;
 
 namespace OpenID4VC_Prototype.Services;
 
-public class VerifierService
+public class VerifierService(CryptoService cryptoService)
 {
+    private readonly CryptoService _cryptoService = cryptoService;
+
     public ValidationResult ValidateCredential(VerifiableCredential credential, string issuerPublicKey)
     {
         Log.Information($"Verifying credential for holder DID: {credential.HolderDId}");
@@ -16,7 +18,7 @@ public class VerifierService
         if (string.IsNullOrEmpty(issuerPublicKey))
             return new ValidationResult(false, "Issuer public key is missing");
 
-        var isValid = CryptoService.VerifySignature(credential, issuerPublicKey);
+        var isValid = _cryptoService.VerifySignature(credential, issuerPublicKey);
 
         return isValid
             ? new ValidationResult(true)

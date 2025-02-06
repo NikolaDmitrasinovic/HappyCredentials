@@ -5,6 +5,10 @@ using Serilog;
 
 LogConfigurator.Configure();
 
+var cryptoService = new CryptoService();
+var issuerService = new IssuerService(cryptoService);
+var verifierService = new VerifierService(cryptoService);
+
 var dIdService = new DIdService();
 var issuer = dIdService.GenerateDId();
 var holder = dIdService.GenerateDId();
@@ -19,7 +23,6 @@ WriteTitle("Issuing verifiable credential");
 var credential = new VerifiableCredential();
 try
 {
-    var issuerService = new IssuerService();
     credential = issuerService.IssueCredential(issuer, holder.DId);
 
     Console.WriteLine($"Issued Credential: {credential.CredentialType} for {credential.HolderDId}");
@@ -37,7 +40,6 @@ catch (Exception ex)
 WriteTitle("Verifier validates the credential");
 try
 {
-    var verifierService = new VerifierService();
     var validationResult = verifierService.ValidateCredential(credential, issuer.PublicKey);
 
     Log.Information(validationResult.IsValid
