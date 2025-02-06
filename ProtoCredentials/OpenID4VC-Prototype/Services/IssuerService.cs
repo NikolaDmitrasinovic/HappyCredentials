@@ -1,10 +1,11 @@
-﻿using OpenID4VC_Prototype.Core.Models;
+﻿using OpenID4VC_Prototype.Core.Interfaces;
+using OpenID4VC_Prototype.Core.Models;
 using OpenID4VC_Prototype.Utils;
 using Serilog;
 
 namespace OpenID4VC_Prototype.Services;
 
-public class IssuerService(CryptoService cryptoService)
+public class IssuerService(CryptoService cryptoService) : IIssuerService
 {
     private readonly CryptoService _cryptoService = cryptoService;
 
