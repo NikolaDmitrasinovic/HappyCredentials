@@ -1,12 +1,12 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
-using OpenID4VC_Prototype.Models;
+using OpenID4VC_Prototype.Core.Models;
 
-namespace OpenID4VC_Prototype.Utils;
+namespace OpenID4VC_Prototype.Services;
 
-public class CryptoUtils
+public class CryptoService
 {
-    public static string SignData(VerifiableCredential credential, string privateKeyBase64)
+    public string SignData(VerifiableCredential credential, string privateKeyBase64)
     {
         var rsa = RSA.Create();
         rsa.ImportRSAPrivateKey(Convert.FromBase64String(privateKeyBase64), out _);
@@ -17,7 +17,7 @@ public class CryptoUtils
         return Convert.ToBase64String(signatureBytes);
     }
 
-    public static bool VerifySignature(VerifiableCredential credential, string publicKeyBase64)
+    public bool VerifySignature(VerifiableCredential credential, string publicKeyBase64)
     {
         if (string.IsNullOrEmpty(publicKeyBase64) || !IsBase64String(publicKeyBase64))
             throw new ArgumentException("Invalid public key format!");

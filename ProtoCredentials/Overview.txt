@@ -1,3 +1,32 @@
+Ver 2:
+OpenID4VCPrototype/
+├── Program.cs
+├── appsettings.json
+├── Core/
+│   ├── Models/
+│   │   ├── Credential.cs
+│   │   ├── DID.cs
+│   │   └── VerifiableCredential.cs
+│   └── Interfaces/
+│       ├── ICryptoUtils.cs
+│       ├── IValidationService.cs
+│       └── IVerifierService.cs
+├── Services/
+│   ├── CryptoUtils.cs
+│   ├── DIDService.cs
+│   ├── CredentialService.cs
+│   ├── VerifierService.cs
+│   └── ValidationService.cs
+├── Logging/
+│   └── LogConfigurator.cs
+├── Utilities/
+│   └── KeyGenerator.cs
+└── Tests/
+    ├── VerifierServiceTests.cs
+    └── CredentialServiceTests.cs
+
+
+Ver 1:
 OpenID4VC-Prototype/
 │── Program.cs
 │── Models/

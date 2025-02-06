@@ -1,11 +1,13 @@
-﻿using OpenID4VC_Prototype.Models;
+﻿using OpenID4VC_Prototype.Core.Models;
 using OpenID4VC_Prototype.Utils;
 using Serilog;
 
 namespace OpenID4VC_Prototype.Services;
 
-public class IssuerService
+public class IssuerService(CryptoService cryptoService)
 {
+    private readonly CryptoService _cryptoService = cryptoService;
+
     public VerifiableCredential IssueCredential(DecentralizedIdentifier issuer, string holderDId)
     {
         Log.Information($"Issuing credential for holder DID: {holderDId}");
@@ -25,7 +27,7 @@ public class IssuerService
             }
         };
 
-        credential.Signature = CryptoUtils.SignData(credential, issuer.PrivateKey);
+        credential.Signature = _cryptoService.SignData(credential, issuer.PrivateKey);
 
         return credential;
     }

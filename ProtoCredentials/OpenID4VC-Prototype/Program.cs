@@ -1,17 +1,18 @@
-﻿using OpenID4VC_Prototype.Models;
+﻿using OpenID4VC_Prototype.Core.Models;
+using OpenID4VC_Prototype.Logging;
 using OpenID4VC_Prototype.Services;
-using OpenID4VC_Prototype.Utils;
 using Serilog;
 
-Log.Logger = new LoggerConfiguration()
-    .WriteTo.Console()
-    //.WriteTo.File("../../logs/log.txt", rollingInterval: RollingInterval.Day)
-    .Enrich.WithProperty("Application", "OpenID4VC Prototype")
-    .CreateLogger();
+LogConfigurator.Configure();
 
-var issuer = DIdGenerator.GenerateDId();
-var holder = DIdGenerator.GenerateDId();
-var verifier = DIdGenerator.GenerateDId();
+var cryptoService = new CryptoService();
+var issuerService = new IssuerService(cryptoService);
+var verifierService = new VerifierService(cryptoService);
+var dIdService = new DIdService();
+
+var issuer = dIdService.GenerateDId();
+var holder = dIdService.GenerateDId();
+var verifier = dIdService.GenerateDId();
 
 Console.WriteLine($"Issuer DID: {issuer.DId}");
 Console.WriteLine($"Holder DID: {holder.DId}");
@@ -22,7 +23,6 @@ WriteTitle("Issuing verifiable credential");
 var credential = new VerifiableCredential();
 try
 {
-    var issuerService = new IssuerService();
     credential = issuerService.IssueCredential(issuer, holder.DId);
 
     Console.WriteLine($"Issued Credential: {credential.CredentialType} for {credential.HolderDId}");
@@ -40,7 +40,6 @@ catch (Exception ex)
 WriteTitle("Verifier validates the credential");
 try
 {
-    var verifierService = new VerifierService();
     var validationResult = verifierService.ValidateCredential(credential, issuer.PublicKey);
 
     Log.Information(validationResult.IsValid
@@ -55,6 +54,8 @@ catch (Exception ex)
 {
     Log.Fatal(ex, $"Unexpected error: {ex.Message}");
 }
+
+Log.CloseAndFlush();
 
 return;
 
