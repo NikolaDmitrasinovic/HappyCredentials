@@ -5,9 +5,10 @@ using Serilog;
 
 LogConfigurator.Configure();
 
-var issuer = DIdService.GenerateDId();
-var holder = DIdService.GenerateDId();
-var verifier = DIdService.GenerateDId();
+var dIdService = new DIdService();
+var issuer = dIdService.GenerateDId();
+var holder = dIdService.GenerateDId();
+var verifier = dIdService.GenerateDId();
 
 Console.WriteLine($"Issuer DID: {issuer.DId}");
 Console.WriteLine($"Holder DID: {holder.DId}");
