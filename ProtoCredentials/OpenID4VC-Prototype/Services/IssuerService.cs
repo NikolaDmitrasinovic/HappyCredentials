@@ -25,7 +25,7 @@ public class IssuerService
             }
         };
 
-        credential.Signature = CryptoUtils.SignData(credential, issuer.PrivateKey);
+        credential.Signature = CryptoService.SignData(credential, issuer.PrivateKey);
 
         return credential;
     }

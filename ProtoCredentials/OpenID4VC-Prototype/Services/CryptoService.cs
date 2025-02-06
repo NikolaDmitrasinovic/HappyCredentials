@@ -2,9 +2,9 @@
 using System.Text;
 using OpenID4VC_Prototype.Core.Models;
 
-namespace OpenID4VC_Prototype.Utils;
+namespace OpenID4VC_Prototype.Services;
 
-public class CryptoUtils
+public class CryptoService
 {
     public static string SignData(VerifiableCredential credential, string privateKeyBase64)
     {

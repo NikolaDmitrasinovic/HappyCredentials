@@ -16,7 +16,7 @@ public class VerifierService
         if (string.IsNullOrEmpty(issuerPublicKey))
             return new ValidationResult(false, "Issuer public key is missing");
 
-        var isValid = CryptoUtils.VerifySignature(credential, issuerPublicKey);
+        var isValid = CryptoService.VerifySignature(credential, issuerPublicKey);
 
         return isValid
             ? new ValidationResult(true)
