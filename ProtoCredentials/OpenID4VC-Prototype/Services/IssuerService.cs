@@ -5,10 +5,8 @@ using Serilog;
 
 namespace OpenID4VC_Prototype.Services;
 
-public class IssuerService(CryptoService cryptoService) : IIssuerService
+public class IssuerService(ICryptoService cryptoService) : IIssuerService
 {
-    private readonly CryptoService _cryptoService = cryptoService;
-
     public VerifiableCredential IssueCredential(DecentralizedIdentifier issuer, string holderDId)
     {
         Log.Information($"Issuing credential for holder DID: {holderDId}");
@@ -28,7 +26,7 @@ public class IssuerService(CryptoService cryptoService) : IIssuerService
             }
         };
 
-        credential.Signature = _cryptoService.SignData(credential, issuer.PrivateKey);
+        credential.Signature = cryptoService.SignData(credential, issuer.PrivateKey);
 
         return credential;
     }
