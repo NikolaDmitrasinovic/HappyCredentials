@@ -20,7 +20,7 @@ OpenID4VCPrototype/
 ├── Logging/
 │   └── LogConfigurator.cs
 ├── Utilities/
-│   └── KeyGenerator.cs
+│   └── DIDUtils.cs
 └── Tests/
     ├── VerifierServiceTests.cs
     └── CredentialServiceTests.cs

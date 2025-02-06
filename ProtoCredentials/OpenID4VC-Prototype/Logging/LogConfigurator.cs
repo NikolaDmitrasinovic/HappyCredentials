@@ -1,6 +1,4 @@
-﻿using Serilog;
-
-namespace OpenID4VC_Prototype.Logging;
+﻿namespace OpenID4VC_Prototype.Logging;
 
 public static class LogConfigurator
 {
@@ -8,7 +6,7 @@ public static class LogConfigurator
     {
         Log.Logger = new LoggerConfiguration()
             .WriteTo.Console()
-            //.WriteTo.File("../../logs/log.txt", rollingInterval: RollingInterval.Day)
+            .WriteTo.File("../../logs/log.txt", rollingInterval: RollingInterval.Day)
             .Enrich.WithProperty("Application", "OpenID4VC Prototype")
             .CreateLogger();
     }
