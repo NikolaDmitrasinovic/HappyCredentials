@@ -4,8 +4,10 @@ using Microsoft.Extensions.Hosting;
 LogConfigurator.Configure();
 
 var builder = Host.CreateDefaultBuilder(args)
-    .ConfigureServices(services =>
+    .ConfigureServices((hostContext, services) =>
     {
+        services.Configure<DIdSettings>(hostContext.Configuration.GetSection("OpenID4VC"));
+
         services.AddSingleton<ICryptoService, CryptoService>();
         services.AddScoped<IIssuerService, IssuerService>();
         services.AddScoped<IVerifierService, VerifierService>();
