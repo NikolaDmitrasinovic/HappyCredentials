@@ -1,13 +1,10 @@
 ﻿using OpenID4VC_Prototype.Core.Models;
+using OpenID4VC_Prototype.Logging;
 using OpenID4VC_Prototype.Services;
 using OpenID4VC_Prototype.Utils;
 using Serilog;
 
-Log.Logger = new LoggerConfiguration()
-    .WriteTo.Console()
-    //.WriteTo.File("../../logs/log.txt", rollingInterval: RollingInterval.Day)
-    .Enrich.WithProperty("Application", "OpenID4VC Prototype")
-    .CreateLogger();
+LogConfigurator.Configure();
 
 var issuer = DIdGenerator.GenerateDId();
 var holder = DIdGenerator.GenerateDId();
@@ -55,6 +52,8 @@ catch (Exception ex)
 {
     Log.Fatal(ex, $"Unexpected error: {ex.Message}");
 }
+
+Log.CloseAndFlush();
 
 return;
 
