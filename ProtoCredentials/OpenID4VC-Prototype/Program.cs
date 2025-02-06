@@ -1,21 +1,22 @@
-﻿using Microsoft.Extensions.Hosting;
-using OpenID4VC_Prototype.Core.Models;
-using OpenID4VC_Prototype.Logging;
-using OpenID4VC_Prototype.Services;
-using Serilog;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 LogConfigurator.Configure();
 
 var builder = Host.CreateDefaultBuilder(args)
-    .ConfigureServices((hostContext, services) =>
+    .ConfigureServices(services =>
     {
+        services.AddSingleton<ICryptoService, CryptoService>();
+        services.AddScoped<IIssuerService, IssuerService>();
+        services.AddScoped<IVerifierService, VerifierService>();
+        services.AddSingleton<DIdService>();
+    }).Build();
 
-    });
+using var scope = builder.Services.CreateScope();
 
-var cryptoService = new CryptoService();
-var issuerService = new IssuerService(cryptoService);
-var verifierService = new VerifierService(cryptoService);
-var dIdService = new DIdService();
+var issuerService = scope.ServiceProvider.GetRequiredService<IIssuerService>();
+var verifierService = scope.ServiceProvider.GetRequiredService<IVerifierService>();
+var dIdService = scope.ServiceProvider.GetRequiredService<DIdService>();
 
 var issuer = dIdService.GenerateDId();
 var holder = dIdService.GenerateDId();
