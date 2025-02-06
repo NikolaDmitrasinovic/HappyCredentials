@@ -1,4 +1,4 @@
-﻿using OpenID4VC_Prototype.Models;
+﻿using OpenID4VC_Prototype.Core.Models;
 using OpenID4VC_Prototype.Utils;
 using Serilog;
 

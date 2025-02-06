@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
-using OpenID4VC_Prototype.Models;
+using OpenID4VC_Prototype.Core.Models;
 
 namespace OpenID4VC_Prototype.Utils;
 

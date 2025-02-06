@@ -1,4 +1,4 @@
-﻿namespace OpenID4VC_Prototype.Models;
+﻿namespace OpenID4VC_Prototype.Core.Models;
 
 public class DecentralizedIdentifier
 {
