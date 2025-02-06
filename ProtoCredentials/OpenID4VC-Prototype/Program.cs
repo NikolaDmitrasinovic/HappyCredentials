@@ -1,9 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-LogConfigurator.Configure();
-
 var builder = Host.CreateDefaultBuilder(args)
+    .UseSerilog((hostContext, loggerConfiguration) =>
+    {
+        loggerConfiguration.ReadFrom.Configuration(hostContext.Configuration);
+    })
     .ConfigureServices((hostContext, services) =>
     {
         services.Configure<DIdSettings>(hostContext.Configuration.GetSection("OpenID4VC"));
