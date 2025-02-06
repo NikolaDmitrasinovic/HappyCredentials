@@ -1,5 +1,4 @@
 ﻿using System.Security.Cryptography;
-using OpenID4VC_Prototype.Core.Models;
 
 namespace OpenID4VC_Prototype.Services;
 
@@ -16,17 +15,17 @@ public class DIdService
         };
     }
 
-    private DecentralizedIdentifier GenerateWebDId()
+    private static DecentralizedIdentifier GenerateWebDId()
     {
         throw new NotImplementedException();
     }
 
-    private DecentralizedIdentifier GenerateIonDId()
+    private static DecentralizedIdentifier GenerateIonDId()
     {
         throw new NotImplementedException();
     }
 
-    private DecentralizedIdentifier GenerateExampleDId()
+    private static DecentralizedIdentifier GenerateExampleDId()
     {
         var rsa = RSA.Create(2048);
         var publicKey = Convert.ToBase64String(rsa.ExportRSAPublicKey());

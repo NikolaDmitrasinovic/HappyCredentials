@@ -1,6 +1,4 @@
-﻿using OpenID4VC_Prototype.Core.Models;
-
-namespace OpenID4VC_Prototype.Utils;
+﻿namespace OpenID4VC_Prototype.Utils;
 
 public static class CredentialUtils
 {

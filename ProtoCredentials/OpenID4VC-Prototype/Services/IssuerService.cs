@@ -1,7 +1,4 @@
-﻿using OpenID4VC_Prototype.Core.Interfaces;
-using OpenID4VC_Prototype.Core.Models;
-using OpenID4VC_Prototype.Utils;
-using Serilog;
+﻿using OpenID4VC_Prototype.Utils;
 
 namespace OpenID4VC_Prototype.Services;
 
