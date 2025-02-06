@@ -40,9 +40,3 @@ public class DIdService(IOptions<DIdSettings> settings)
         };
     }
 }
-
-public class DIdSettings
-{
-    public string DIDPrefix { get; set; }
-    public int DefaultKeySize { get; set; }
-}
