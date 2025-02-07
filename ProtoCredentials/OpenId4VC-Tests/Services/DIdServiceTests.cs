@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.Options;
-using Moq;
+﻿using FakeItEasy;
+using Microsoft.Extensions.Options;
 using OpenID4VC_Prototype.Configurations;
 using OpenID4VC_Prototype.Services;
 
@@ -16,10 +16,11 @@ public class DIdServiceTests
             DIdPrefix = "did:example:"
         };
 
-        var mockOptions = new Mock<IOptions<DIdConfiguration>>();
-        mockOptions.Setup(o => o.Value).Returns(didSettings);
+        var fakeOptions = A.Fake<IOptions<DIdConfiguration>>();
 
-        var dIdService = new DIdService(mockOptions.Object);
+        A.CallTo(() => fakeOptions.Value).Returns(didSettings);
+
+        var dIdService = new DIdService(fakeOptions);
 
         // Act
         var dId = dIdService.GenerateDId();
