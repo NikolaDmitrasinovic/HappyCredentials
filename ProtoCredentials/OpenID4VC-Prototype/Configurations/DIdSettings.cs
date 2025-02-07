@@ -2,6 +2,6 @@
 
 public class DIdSettings
 {
-    public string? DIDPrefix { get; set; }
+    public string? DIdPrefix { get; set; }
     public int DefaultKeySize { get; set; }
 }
