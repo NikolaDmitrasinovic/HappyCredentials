@@ -8,7 +8,7 @@ var builder = Host.CreateDefaultBuilder(args)
     })
     .ConfigureServices((hostContext, services) =>
     {
-        services.Configure<DIdSettings>(hostContext.Configuration.GetSection("OpenID4VC"));
+        services.Configure<DIdConfiguration>(hostContext.Configuration.GetSection("DIdConfiguration"));
 
         services.AddSingleton<ICryptoService, CryptoService>();
         services.AddScoped<IIssuerService, IssuerService>();
