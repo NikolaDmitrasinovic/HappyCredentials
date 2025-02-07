@@ -1,8 +1,9 @@
 ﻿using System.Security.Cryptography;
+using Microsoft.Extensions.Options;
 
 namespace OpenID4VC_Prototype.Services;
 
-public class DIdService
+public class DIdService(IOptions<DIdConfiguration> options)
 {
     public DecentralizedIdentifier GenerateDId(string method = "example")
     {
@@ -10,7 +11,7 @@ public class DIdService
         {
             "ion" => GenerateIonDId(),
             "web" => GenerateWebDId(),
-            "example" => GenerateExampleDId(),
+            "example" => GenerateExampleDId(options.Value),
             _ => throw new ArgumentOutOfRangeException(nameof(method), method, null)
         };
     }
@@ -25,15 +26,15 @@ public class DIdService
         throw new NotImplementedException();
     }
 
-    private static DecentralizedIdentifier GenerateExampleDId()
+    private static DecentralizedIdentifier GenerateExampleDId(DIdConfiguration configuration)
     {
-        var rsa = RSA.Create(2048);
+        var rsa = RSA.Create(configuration.DefaultKeySize);
         var publicKey = Convert.ToBase64String(rsa.ExportRSAPublicKey());
         var privateKey = Convert.ToBase64String(rsa.ExportRSAPrivateKey());
 
         return new DecentralizedIdentifier
         {
-            DId = "did:example:" + Guid.NewGuid(),
+            DId = configuration.DIdPrefix + Guid.NewGuid(),
             PublicKey = publicKey,
             PrivateKey = privateKey
         };
