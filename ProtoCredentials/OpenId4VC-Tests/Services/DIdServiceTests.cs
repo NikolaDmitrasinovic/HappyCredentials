@@ -20,10 +20,10 @@ public class DIdServiceTests
 
         A.CallTo(() => fakeOptions.Value).Returns(didSettings);
 
-        var dIdService = new DIdService(fakeOptions);
+        var mockDIdService = new DIdService(fakeOptions);
 
         // Act
-        var dId = dIdService.GenerateDId();
+        var dId = mockDIdService.GenerateDId();
 
         // Assert
         Assert.StartsWith("did:example:", dId.DId);
