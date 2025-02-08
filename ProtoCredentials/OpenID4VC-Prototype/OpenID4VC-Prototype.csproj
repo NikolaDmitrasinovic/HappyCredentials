@@ -24,7 +24,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Application\Services\" />
 	  <Folder Include="Infrastructure\Configurations\" />
 	  <Folder Include="Infrastructure\Interfaces\" />
 	</ItemGroup>

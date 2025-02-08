@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OpenID4VC_Prototype.Application.Interfaces;
+using OpenID4VC_Prototype.Application.Services;
 using OpenID4VC_Prototype.Domain.Interfaces;
 using OpenID4VC_Prototype.Domain.Services;
 
