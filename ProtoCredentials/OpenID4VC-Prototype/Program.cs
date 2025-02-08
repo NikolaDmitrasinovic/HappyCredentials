@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using OpenID4VC_Prototype.Application.Interfaces;
 
 var builder = Host.CreateDefaultBuilder(args)
     .UseSerilog((hostContext, loggerConfiguration) =>
