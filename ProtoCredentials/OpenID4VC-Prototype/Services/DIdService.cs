@@ -1,5 +1,6 @@
 ﻿using System.Security.Cryptography;
 using Microsoft.Extensions.Options;
+using OpenID4VC_Prototype.Infrastructure.Configurations;
 
 namespace OpenID4VC_Prototype.Services;
 

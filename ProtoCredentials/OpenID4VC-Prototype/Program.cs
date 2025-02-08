@@ -4,6 +4,7 @@ using OpenID4VC_Prototype.Application.Interfaces;
 using OpenID4VC_Prototype.Application.Services;
 using OpenID4VC_Prototype.Domain.Interfaces;
 using OpenID4VC_Prototype.Domain.Services;
+using OpenID4VC_Prototype.Infrastructure.Configurations;
 
 var builder = Host.CreateDefaultBuilder(args)
     .UseSerilog((hostContext, loggerConfiguration) =>

@@ -1,6 +1,6 @@
 ﻿using FakeItEasy;
 using Microsoft.Extensions.Options;
-using OpenID4VC_Prototype.Configurations;
+using OpenID4VC_Prototype.Infrastructure.Configurations;
 using OpenID4VC_Prototype.Services;
 
 namespace OpenId4VC_Tests.Services;

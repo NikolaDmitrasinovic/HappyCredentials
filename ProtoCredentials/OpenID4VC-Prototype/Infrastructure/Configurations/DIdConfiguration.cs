@@ -1,4 +1,4 @@
-﻿namespace OpenID4VC_Prototype.Configurations;
+﻿namespace OpenID4VC_Prototype.Infrastructure.Configurations;
 
 public class DIdConfiguration
 {
