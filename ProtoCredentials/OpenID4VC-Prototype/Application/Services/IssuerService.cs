@@ -3,7 +3,7 @@ using OpenID4VC_Prototype.Application.Interfaces;
 using OpenID4VC_Prototype.Application.Models;
 using OpenID4VC_Prototype.Domain.Interfaces;
 using OpenID4VC_Prototype.Domain.Models;
-using OpenID4VC_Prototype.Utils;
+using OpenID4VC_Prototype.Domain.Validators;
 
 namespace OpenID4VC_Prototype.Application.Services;
 
@@ -13,7 +13,7 @@ public class IssuerService(ICryptoService cryptoService) : IIssuerService
     {
         Log.Information($"Issuing credential for holder DID: {holderDId}");
 
-        if (!DIdUtils.IsValidDId(holderDId))
+        if (!DIdValidators.IsValidDId(holderDId))
             throw new ArgumentException($"Invalid holder DID: {holderDId}");
 
         var credential = new VerifiableCredential
