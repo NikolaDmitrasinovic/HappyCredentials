@@ -1,5 +1,4 @@
-﻿using FakeItEasy;
-using OpenID4VC_Prototype.Domain.Models;
+﻿using OpenID4VC_Prototype.Domain.Models;
 using OpenID4VC_Prototype.Domain.Services;
 
 namespace OpenId4VC_Tests.Services;

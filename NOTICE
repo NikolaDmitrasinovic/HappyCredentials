@@ -16,8 +16,3 @@ This project uses the following third-party libraries:
   Copyright © 2013–2025 Serilog Contributors  
   Licensed under the Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0).  
   This product includes software developed by the Serilog project (https://serilog.net/).
-
-- **FakeItEasy**
-  Copyright (c) FakeItEasy contributors. (fakeiteasy@hagne.se)
-  Licensed under the MIT License
-  Website: https://fakeiteasy.github.io/
