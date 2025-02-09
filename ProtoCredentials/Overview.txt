@@ -1,3 +1,37 @@
+Ver 3:
+OpenID4VCPrototype/
+├── /Domain
+│   ├── /Models
+│   │   ├── DID.cs
+│   │   └── VC.cs
+│   ├── /Validators
+│   │   ├── DIDValidator.cs
+│   │   └── VCValidator.cs
+│   ├── /Services
+│   │   └── (Domain services, e.g., DIDService, CryptoService)
+│   ├── /Interfaces
+│   │   └── (Domain interfaces, e.g., IDIDService, ICryptoService)
+├── /Application
+│   ├── /Models
+│   │   ├── DIDDto.cs
+│   │   └── VCDto.cs
+│   ├── /Services
+│   │   ├── IssuerService.cs
+│   │   └── ValidatorService.cs
+│   ├── /Interfaces
+│   │   ├── IIssuerService.cs
+│   │   └── IValidatorService.cs
+├── /Infrastructure
+│   ├── /Configuration
+│   │   └── DIDConfiguration.cs
+│   ├── /Services
+│   │   └── (Infrastructure services, e.g., EmailService)
+├── /Presentation
+│   └── /Console
+│       └── Program.cs
+├── appsettings.json
+└── Program.cs
+
 Ver 2:
 OpenID4VCPrototype/
 ├── Program.cs
