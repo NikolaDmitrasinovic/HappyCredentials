@@ -1,4 +1,5 @@
 ﻿using OpenID4VC_Prototype.Domain.Interfaces;
+using OpenID4VC_Prototype.Domain.Models;
 using System.Security.Cryptography;
 using System.Text;
 
