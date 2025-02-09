@@ -1,8 +1,9 @@
-﻿using System.Text.RegularExpressions;
+﻿using Serilog;
+using System.Text.RegularExpressions;
 
-namespace OpenID4VC_Prototype.Utils;
+namespace OpenID4VC_Prototype.Domain.Validators;
 
-public static class DIdUtils
+public static class DIdValidators
 {
     public static bool IsValidDId(string dId)
     {

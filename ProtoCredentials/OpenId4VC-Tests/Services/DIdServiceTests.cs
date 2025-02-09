@@ -1,7 +1,5 @@
-﻿using FakeItEasy;
-using Microsoft.Extensions.Options;
-using OpenID4VC_Prototype.Configurations;
-using OpenID4VC_Prototype.Services;
+﻿using OpenID4VC_Prototype.Domain.Models;
+using OpenID4VC_Prototype.Domain.Services;
 
 namespace OpenId4VC_Tests.Services;
 public class DIdServiceTests
@@ -10,17 +8,13 @@ public class DIdServiceTests
     public void GenerateDId_ShouldReturnValidDId()
     {
         // Arrange
-        var didSettings = new DIdConfiguration()
+        var dIdSettings = new DIdConfig()
         {
             DefaultKeySize = 2048,
             DIdPrefix = "did:example:"
         };
 
-        var fakeOptions = A.Fake<IOptions<DIdConfiguration>>();
-
-        A.CallTo(() => fakeOptions.Value).Returns(didSettings);
-
-        var mockDIdService = new DIdService(fakeOptions);
+        var mockDIdService = new DIdService(dIdSettings);
 
         // Act
         var dId = mockDIdService.GenerateDId();

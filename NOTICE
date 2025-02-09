@@ -17,7 +17,7 @@ This project uses the following third-party libraries:
   Licensed under the Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0).  
   This product includes software developed by the Serilog project (https://serilog.net/).
 
-- **FakeItEasy**
-  Copyright (c) FakeItEasy contributors. (fakeiteasy@hagne.se)
-  Licensed under the MIT License
-  Website: https://fakeiteasy.github.io/
+- **Mapster**
+  A fast, fun, and stimulating object-to-object mapping library
+  Licensed under the [MIT License](https://opensource.org/licenses/MIT).  
+  Website: https://github.com/MapsterMapper/Mapster
