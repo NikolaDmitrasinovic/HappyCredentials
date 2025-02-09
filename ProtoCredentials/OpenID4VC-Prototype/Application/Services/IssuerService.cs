@@ -1,5 +1,6 @@
 ﻿using OpenID4VC_Prototype.Application.Interfaces;
 using OpenID4VC_Prototype.Domain.Interfaces;
+using OpenID4VC_Prototype.Domain.Models;
 using OpenID4VC_Prototype.Utils;
 
 namespace OpenID4VC_Prototype.Application.Services;
