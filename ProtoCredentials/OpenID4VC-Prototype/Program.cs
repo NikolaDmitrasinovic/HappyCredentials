@@ -18,7 +18,7 @@ var builder = Host.CreateDefaultBuilder(args)
         services.AddSingleton(sp =>
         {
             var appConfig = sp.GetRequiredService<IOptions<DIdConfiguration>>().Value;
-            return DIdConfiguration.ToDomainModel(appConfig);
+            return DIdConfigMapper.ToDomainModel(appConfig);
         });
 
         services.AddSingleton<ICryptoService, CryptoService>();
