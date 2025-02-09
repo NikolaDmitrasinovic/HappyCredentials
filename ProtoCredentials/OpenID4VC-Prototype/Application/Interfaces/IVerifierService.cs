@@ -1,4 +1,6 @@
-﻿namespace OpenID4VC_Prototype.Application.Interfaces;
+﻿using OpenID4VC_Prototype.Application.Models;
+
+namespace OpenID4VC_Prototype.Application.Interfaces;
 
 public interface IVerifierService
 {
