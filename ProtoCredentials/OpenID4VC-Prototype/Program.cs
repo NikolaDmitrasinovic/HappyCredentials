@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using OpenID4VC_Prototype.Application.Interfaces;
 using OpenID4VC_Prototype.Application.Services;
 using OpenID4VC_Prototype.Domain.Interfaces;
@@ -14,6 +15,11 @@ var builder = Host.CreateDefaultBuilder(args)
     .ConfigureServices((hostContext, services) =>
     {
         services.Configure<DIdConfiguration>(hostContext.Configuration.GetSection("DIdConfiguration"));
+        services.AddSingleton(sp =>
+        {
+            var appConfig = sp.GetRequiredService<IOptions<DIdConfiguration>>().Value;
+            return DIdConfiguration.ToDomainModel(appConfig);
+        });
 
         services.AddSingleton<ICryptoService, CryptoService>();
         services.AddScoped<IIssuerService, IssuerService>();
