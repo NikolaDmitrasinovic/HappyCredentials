@@ -4,8 +4,10 @@ using Microsoft.Extensions.Options;
 using OpenID4VC_Prototype.Application.Interfaces;
 using OpenID4VC_Prototype.Application.Services;
 using OpenID4VC_Prototype.Domain.Interfaces;
+using OpenID4VC_Prototype.Domain.Models;
 using OpenID4VC_Prototype.Domain.Services;
 using OpenID4VC_Prototype.Infrastructure.Configurations;
+using  didConfig = OpenID4VC_Prototype.Infrastructure.Configurations.DIdConfig;
 
 var builder = Host.CreateDefaultBuilder(args)
     .UseSerilog((hostContext, loggerConfiguration) =>
@@ -14,10 +16,10 @@ var builder = Host.CreateDefaultBuilder(args)
     })
     .ConfigureServices((hostContext, services) =>
     {
-        services.Configure<DIdConfig>(hostContext.Configuration.GetSection("DIdConfiguration"));
+        services.Configure<didConfig>(hostContext.Configuration.GetSection("DIdConfiguration"));
         services.AddSingleton(sp =>
         {
-            var appConfig = sp.GetRequiredService<IOptions<DIdConfig>>().Value;
+            var appConfig = sp.GetRequiredService<IOptions<didConfig>>().Value;
             return DIdConfigMapper.ToDomainModel(appConfig);
         });
 
