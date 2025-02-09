@@ -10,13 +10,13 @@ public class DIdServiceTests
     public void GenerateDId_ShouldReturnValidDId()
     {
         // Arrange
-        var didSettings = new DIdConfiguration()
+        var didSettings = new DIdConfig()
         {
             DefaultKeySize = 2048,
             DIdPrefix = "did:example:"
         };
 
-        var fakeOptions = A.Fake<IOptions<DIdConfiguration>>();
+        var fakeOptions = A.Fake<IOptions<DIdConfig>>();
 
         A.CallTo(() => fakeOptions.Value).Returns(didSettings);
 

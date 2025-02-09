@@ -14,10 +14,10 @@ var builder = Host.CreateDefaultBuilder(args)
     })
     .ConfigureServices((hostContext, services) =>
     {
-        services.Configure<DIdConfiguration>(hostContext.Configuration.GetSection("DIdConfiguration"));
+        services.Configure<DIdConfig>(hostContext.Configuration.GetSection("DIdConfiguration"));
         services.AddSingleton(sp =>
         {
-            var appConfig = sp.GetRequiredService<IOptions<DIdConfiguration>>().Value;
+            var appConfig = sp.GetRequiredService<IOptions<DIdConfig>>().Value;
             return DIdConfigMapper.ToDomainModel(appConfig);
         });
 

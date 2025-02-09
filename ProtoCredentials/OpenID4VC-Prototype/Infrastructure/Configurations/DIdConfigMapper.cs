@@ -1,11 +1,11 @@
-﻿using OpenID4VC_Prototype.Domain.Models;
+﻿using domainDIdConfig = OpenID4VC_Prototype.Domain.Models.DIdConfig;
 
 namespace OpenID4VC_Prototype.Infrastructure.Configurations;
 public class DIdConfigMapper
 {
-    public static DIdConfig ToDomainModel(DIdConfiguration configuration)
+    public static domainDIdConfig ToDomainModel(DIdConfig configuration)
     {
-        return new DIdConfig
+        return new domainDIdConfig
         {
             DIdPrefix = configuration.DIdPrefix,
             DefaultKeySize = configuration.DefaultKeySize
