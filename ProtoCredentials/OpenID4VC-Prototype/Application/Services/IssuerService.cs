@@ -1,4 +1,6 @@
-﻿using OpenID4VC_Prototype.Application.Interfaces;
+﻿using Mapster;
+using OpenID4VC_Prototype.Application.Interfaces;
+using OpenID4VC_Prototype.Application.Models;
 using OpenID4VC_Prototype.Domain.Interfaces;
 using OpenID4VC_Prototype.Domain.Models;
 using OpenID4VC_Prototype.Utils;
@@ -7,7 +9,7 @@ namespace OpenID4VC_Prototype.Application.Services;
 
 public class IssuerService(ICryptoService cryptoService) : IIssuerService
 {
-    public VerifiableCredential IssueCredential(DecentralizedIdentifier issuer, string holderDId)
+    public VCDto IssueCredential(DIdDto issuer, string holderDId)
     {
         Log.Information($"Issuing credential for holder DID: {holderDId}");
 
@@ -28,6 +30,6 @@ public class IssuerService(ICryptoService cryptoService) : IIssuerService
 
         credential.Signature = cryptoService.SignData(credential, issuer.PrivateKey);
 
-        return credential;
+        return credential.Adapt<VCDto>();
     }
 }

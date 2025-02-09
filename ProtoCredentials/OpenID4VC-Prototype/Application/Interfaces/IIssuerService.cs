@@ -1,8 +1,8 @@
-﻿using OpenID4VC_Prototype.Domain.Models;
+﻿using OpenID4VC_Prototype.Application.Models;
 
 namespace OpenID4VC_Prototype.Application.Interfaces;
 
 public interface IIssuerService
 {
-    VerifiableCredential IssueCredential(DecentralizedIdentifier issuer, string holderDId);
+    VCDto IssueCredential(DIdDto issuer, string holderDId);
 }

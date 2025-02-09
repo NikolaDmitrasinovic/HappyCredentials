@@ -1,10 +1,11 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Mapster;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using OpenID4VC_Prototype.Application.Interfaces;
+using OpenID4VC_Prototype.Application.Models;
 using OpenID4VC_Prototype.Application.Services;
 using OpenID4VC_Prototype.Domain.Interfaces;
-using OpenID4VC_Prototype.Domain.Models;
 using OpenID4VC_Prototype.Domain.Services;
 using OpenID4VC_Prototype.Infrastructure.Configurations;
 using  didConfig = OpenID4VC_Prototype.Infrastructure.Configurations.DIdConfig;
@@ -45,10 +46,11 @@ Console.WriteLine($"Verifier DID: {verifier.DId}");
 
 // Issuing a verifiable credential
 WriteTitle("Issuing verifiable credential");
-var credential = new VerifiableCredential();
+var credential = new VCDto();
 try
 {
-    credential = issuerService.IssueCredential(issuer, holder.DId);
+    var issuerDto = issuer.Adapt<DIdDto>();
+    credential = issuerService.IssueCredential(issuerDto, holder.DId);
 
     Console.WriteLine($"Issued Credential: {credential.CredentialType} for {credential.HolderDId}");
 }
