@@ -4,6 +4,7 @@ using OpenID4VC_Prototype.Application.Models;
 using OpenID4VC_Prototype.Domain.Interfaces;
 using OpenID4VC_Prototype.Domain.Models;
 using OpenID4VC_Prototype.Domain.Validators;
+using Serilog;
 
 namespace OpenID4VC_Prototype.Application.Services;
 

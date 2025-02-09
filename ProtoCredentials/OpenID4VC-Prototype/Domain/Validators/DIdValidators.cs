@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using Serilog;
+using System.Text.RegularExpressions;
 
 namespace OpenID4VC_Prototype.Domain.Validators;
 

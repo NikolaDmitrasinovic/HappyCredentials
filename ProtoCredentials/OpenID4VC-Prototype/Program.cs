@@ -8,6 +8,7 @@ using OpenID4VC_Prototype.Application.Services;
 using OpenID4VC_Prototype.Domain.Interfaces;
 using OpenID4VC_Prototype.Domain.Services;
 using OpenID4VC_Prototype.Infrastructure.Configurations;
+using Serilog;
 using  didConfig = OpenID4VC_Prototype.Infrastructure.Configurations.DIdConfig;
 
 var builder = Host.CreateDefaultBuilder(args)
