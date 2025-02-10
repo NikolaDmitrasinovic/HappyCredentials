@@ -29,6 +29,7 @@ var builder = Host.CreateDefaultBuilder(args)
         services.AddScoped<IIssuerService, IssuerService>();
         services.AddScoped<IVerifierService, VerifierService>();
         services.AddSingleton<DIdService>();
+        services.AddScoped<IJwtService, JwtService>();
     }).Build();
 
 using var scope = builder.Services.CreateScope();
