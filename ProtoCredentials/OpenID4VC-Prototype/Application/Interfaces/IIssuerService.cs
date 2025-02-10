@@ -5,4 +5,5 @@ namespace OpenID4VC_Prototype.Application.Interfaces;
 public interface IIssuerService
 {
     VCDto IssueCredential(DIdDto issuer, string holderDId);
+    string IssueJwtVc(DIdDto issuer, string holderDId);
 }
