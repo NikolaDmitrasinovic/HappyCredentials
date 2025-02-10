@@ -4,4 +4,5 @@ namespace OpenID4VC_Prototype.Domain.Interfaces;
 public interface IJwtService
 {
     string CreateJwtVc(VerifiableCredential verifiableCredential);
+    bool ValidateJwtVc(string jwtVc);
 }

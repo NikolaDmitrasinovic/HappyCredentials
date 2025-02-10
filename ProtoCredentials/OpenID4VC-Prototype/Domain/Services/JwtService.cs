@@ -1,5 +1,6 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
 using OpenID4VC_Prototype.Domain.Interfaces;
 using OpenID4VC_Prototype.Domain.Models;
 
@@ -21,5 +22,26 @@ public class JwtService : IJwtService
         );
 
         return new JwtSecurityTokenHandler().WriteToken(token);
+    }
+
+    public bool ValidateJwtVc(string jwtVc)
+    {
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var validationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateIssuerSigningKey = true
+        };
+
+        try
+        {
+            tokenHandler.ValidateToken(jwtVc, validationParameters, out _);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 }
