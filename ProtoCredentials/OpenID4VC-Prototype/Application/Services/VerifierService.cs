@@ -8,7 +8,7 @@ using Serilog;
 
 namespace OpenID4VC_Prototype.Application.Services;
 
-public class VerifierService(ICryptoService cryptoService) : IVerifierService
+public class VerifierService(ICryptoService cryptoService, IJwtService jwtService) : IVerifierService
 {
     public ValidationResult ValidateCredential(VCDto credential, string issuerPublicKey)
     {
@@ -23,6 +23,15 @@ public class VerifierService(ICryptoService cryptoService) : IVerifierService
             return new ValidationResult(false, "Issuer public key is missing");
 
         var isValid = cryptoService.VerifySignature(domainCredential, issuerPublicKey);
+
+        return isValid
+            ? new ValidationResult(true)
+            : new ValidationResult(false, "Signature verification failed");
+    }
+
+    public ValidationResult ValidateJwtVc(string jwtVc)
+    {
+        var isValid = jwtService.ValidateJwtVc(jwtVc);
 
         return isValid
             ? new ValidationResult(true)
