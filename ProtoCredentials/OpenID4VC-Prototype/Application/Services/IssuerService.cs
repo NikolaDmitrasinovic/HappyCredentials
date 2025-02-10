@@ -55,7 +55,7 @@ public class IssuerService(ICryptoService cryptoService, IJwtService jwtService)
 
         credential.Signature = cryptoService.SignData(credential, issuer.PrivateKey);
 
-        var jwcVc = jwtService.CreateJwtVc(credential);
+        var jwcVc = jwtService.CreateJwtVc(credential, issuer.PrivateKey);
         return jwcVc;
     }
 }
