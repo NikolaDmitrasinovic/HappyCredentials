@@ -84,6 +84,36 @@ catch (Exception ex)
     Log.Fatal(ex, $"Unexpected error: {ex.Message}");
 }
 
+// Issuing JWT verifiable credential
+WriteTitle("Issuing JWT credential");
+string jwtCredential;
+try
+{
+    var issuerDto = issuer.Adapt<DIdDto>();
+    jwtCredential = issuerService.IssueJwtVc(issuerDto, holder.DId);
+}
+catch (Exception e)
+{
+    Console.WriteLine(e);
+    throw;
+}
+
+// Validating JWT credential
+WriteTitle("Validating JWT credential");
+try
+{
+    var validationResult = verifierService.ValidateJwtVc(jwtCredential);
+
+    Log.Information(validationResult.IsValid
+        ? "Credential is valid!"
+        : $"Verification failed: {validationResult.ErrorMessage}");
+}
+catch (Exception e)
+{
+    Console.WriteLine(e);
+    throw;
+}
+
 Log.CloseAndFlush();
 
 return;
