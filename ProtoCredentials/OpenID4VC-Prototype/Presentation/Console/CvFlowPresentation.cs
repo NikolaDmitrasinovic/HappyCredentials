@@ -8,7 +8,7 @@ namespace OpenID4VC_Prototype.Presentation.Console;
 
 public static class CvFlowPresentation
 {
-    public static void IssueVC(DecentralizedIdentifier issuer, IIssuerService issuerService, DecentralizedIdentifier holder, IVerifierService verifierService)
+    public static void PresentVCFlow(DecentralizedIdentifier issuer, IIssuerService issuerService, DecentralizedIdentifier holder, IVerifierService verifierService)
     {
         // Issuing a verifiable credential
         WriteTitle("Issuing verifiable credential");
