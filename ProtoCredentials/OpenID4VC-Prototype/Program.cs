@@ -46,6 +46,6 @@ Console.WriteLine($"Issuer DID: {issuer.DId}");
 Console.WriteLine($"Holder DID: {holder.DId}");
 Console.WriteLine($"Verifier DID: {verifier.DId}");
 
-CvFlowPresentation.PresentVCFlow(issuer, issuerService, holder, verifierService);
+Presentation.PresentVCFlow(issuer, issuerService, holder, verifierService);
 
 Log.CloseAndFlush();

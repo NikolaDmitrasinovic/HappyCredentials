@@ -6,7 +6,7 @@ using Serilog;
 
 namespace OpenID4VC_Prototype.Presentation.Console;
 
-public static class CvFlowPresentation
+public static class Presentation
 {
     public static void PresentVCFlow(DecentralizedIdentifier issuer, IIssuerService issuerService, DecentralizedIdentifier holder, IVerifierService verifierService)
     {
