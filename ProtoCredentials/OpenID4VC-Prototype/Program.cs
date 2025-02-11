@@ -1,16 +1,14 @@
-﻿using Mapster;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using OpenID4VC_Prototype.Application.Interfaces;
-using OpenID4VC_Prototype.Application.Models;
 using OpenID4VC_Prototype.Application.Services;
 using OpenID4VC_Prototype.Domain.Interfaces;
 using OpenID4VC_Prototype.Domain.Services;
 using OpenID4VC_Prototype.Infrastructure.Configurations;
 using OpenID4VC_Prototype.Presentation.Console;
 using Serilog;
-using  didConfig = OpenID4VC_Prototype.Infrastructure.Configurations.DIdConfig;
+using didConfig = OpenID4VC_Prototype.Infrastructure.Configurations.DIdConfig;
 
 var builder = Host.CreateDefaultBuilder(args)
     .UseSerilog((hostContext, loggerConfiguration) =>
