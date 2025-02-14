@@ -47,7 +47,7 @@ Console.WriteLine($"Issuer DID: {issuer.DId}");
 Console.WriteLine($"Holder DID: {holder.DId}");
 Console.WriteLine($"Verifier DID: {verifier.DId}");
 
-Presentation.PresentVCFlow(issuer, issuerService, holder, verifierService);
+Presentation.PresentVcFlow(issuer, issuerService, holder, verifierService);
 
 Console.WriteLine("JWT flow:");
 // Issuing JWT verifiable credential
