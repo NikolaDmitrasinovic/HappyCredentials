@@ -1,7 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Mapster;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using OpenID4VC_Prototype.Application.Interfaces;
+using OpenID4VC_Prototype.Application.Models;
 using OpenID4VC_Prototype.Application.Services;
 using OpenID4VC_Prototype.Domain.Interfaces;
 using OpenID4VC_Prototype.Domain.Services;
@@ -47,8 +49,9 @@ Console.WriteLine($"Verifier DID: {verifier.DId}");
 
 Presentation.PresentVCFlow(issuer, issuerService, holder, verifierService);
 
+Console.WriteLine("JWT flow:");
 // Issuing JWT verifiable credential
-WriteTitle("Issuing JWT credential");
+//WriteTitle("Issuing JWT credential");
 string jwtCredential;
 try
 {
@@ -62,7 +65,7 @@ catch (Exception e)
 }
 
 // Validating JWT credential
-WriteTitle("Validating JWT credential");
+//WriteTitle("Validating JWT credential");
 try
 {
     var validationResult = verifierService.ValidateJwtVc(jwtCredential);
