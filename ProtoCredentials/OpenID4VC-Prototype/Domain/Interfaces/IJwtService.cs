@@ -1,8 +1,9 @@
-﻿using OpenID4VC_Prototype.Domain.Models;
+﻿using System.Security.Cryptography;
+using OpenID4VC_Prototype.Domain.Models;
 
 namespace OpenID4VC_Prototype.Domain.Interfaces;
 public interface IJwtService
 {
-    string CreateJwtVc(VerifiableCredential verifiableCredential, string privateKey);
-    bool ValidateJwtVc(string jwtVc);
+    string CreateJwtVc(VerifiableCredential verifiableCredential);
+    bool ValidateJwtVc(string jwtVc, RSA publicKey);
 }
