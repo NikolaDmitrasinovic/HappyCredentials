@@ -1,9 +1,10 @@
-﻿using OpenID4VC_Prototype.Application.Models;
+﻿using System.Security.Cryptography;
+using OpenID4VC_Prototype.Application.Models;
 
 namespace OpenID4VC_Prototype.Application.Interfaces;
 
 public interface IVerifierService
 {
     ValidationResult ValidateCredential(VCDto credential, string issuerPublicKey);
-    ValidationResult ValidateJwtVc(string jwtVc);
+    ValidationResult ValidateJwtVc(string jwtVc, string publicKey);
 }

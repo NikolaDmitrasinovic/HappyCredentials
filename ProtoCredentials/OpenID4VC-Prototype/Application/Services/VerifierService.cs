@@ -1,4 +1,5 @@
-﻿using Mapster;
+﻿using System.Security.Cryptography;
+using Mapster;
 using OpenID4VC_Prototype.Application.Interfaces;
 using OpenID4VC_Prototype.Application.Models;
 using OpenID4VC_Prototype.Domain.Interfaces;
@@ -29,9 +30,9 @@ public class VerifierService(ICryptoService cryptoService, IJwtService jwtServic
             : new ValidationResult(false, "Signature verification failed");
     }
 
-    public ValidationResult ValidateJwtVc(string jwtVc)
+    public ValidationResult ValidateJwtVc(string jwtVc, string publicKey)
     {
-        var isValid = jwtService.ValidateJwtVc(jwtVc);
+        var isValid = jwtService.ValidateJwtVc(jwtVc, publicKey);
 
         return isValid
             ? new ValidationResult(true)

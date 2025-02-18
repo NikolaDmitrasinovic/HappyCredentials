@@ -68,7 +68,7 @@ catch (Exception e)
 //WriteTitle("Validating JWT credential");
 try
 {
-    var validationResult = verifierService.ValidateJwtVc(jwtCredential);
+    var validationResult = verifierService.ValidateJwtVc(jwtCredential, issuer.PublicKey);
 
     Log.Information(validationResult.IsValid
         ? "Credential is valid!"
