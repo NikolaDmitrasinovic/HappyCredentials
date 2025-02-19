@@ -49,7 +49,40 @@ public static class Presentation
         }
     }
 
-    static void WriteTitle(string title)
+    public static void PresentJWtVcFlow(DecentralizedIdentifier issuer, IIssuerService issuerService, DecentralizedIdentifier holder, IVerifierService verifierService)
+    {
+        // Issuing JWT verifiable credential
+        WriteTitle("Issuing JWT credential");
+        string jwtCredential;
+        try
+        {
+            var issuerDto = issuer.Adapt<DIdDto>();
+            jwtCredential = issuerService.IssueJwtVc(issuerDto, holder.DId);
+        }
+        catch (Exception e)
+        {
+            System.Console.WriteLine(e);
+            throw;
+        }
+
+        // Validating JWT credential
+        WriteTitle("Validating JWT credential");
+        try
+        {
+            var validationResult = verifierService.ValidateJwtVc(jwtCredential, issuer.PublicKey);
+
+            Log.Information(validationResult.IsValid
+                ? "Credential is valid!"
+                : $"Verification failed: {validationResult.ErrorMessage}");
+        }
+        catch (Exception e)
+        {
+            System.Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    private static void WriteTitle(string title)
     {
         System.Console.WriteLine();
         System.Console.WriteLine("***" + title.ToUpper());

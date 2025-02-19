@@ -1,9 +1,7 @@
-﻿using Mapster;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using OpenID4VC_Prototype.Application.Interfaces;
-using OpenID4VC_Prototype.Application.Models;
 using OpenID4VC_Prototype.Application.Services;
 using OpenID4VC_Prototype.Domain.Interfaces;
 using OpenID4VC_Prototype.Domain.Services;
@@ -48,36 +46,6 @@ Console.WriteLine($"Holder DID: {holder.DId}");
 Console.WriteLine($"Verifier DID: {verifier.DId}");
 
 Presentation.PresentVcFlow(issuer, issuerService, holder, verifierService);
-
-Console.WriteLine("JWT flow:");
-// Issuing JWT verifiable credential
-//WriteTitle("Issuing JWT credential");
-string jwtCredential;
-try
-{
-    var issuerDto = issuer.Adapt<DIdDto>();
-    jwtCredential = issuerService.IssueJwtVc(issuerDto, holder.DId);
-}
-catch (Exception e)
-{
-    Console.WriteLine(e);
-    throw;
-}
-
-// Validating JWT credential
-//WriteTitle("Validating JWT credential");
-try
-{
-    var validationResult = verifierService.ValidateJwtVc(jwtCredential, issuer.PublicKey);
-
-    Log.Information(validationResult.IsValid
-        ? "Credential is valid!"
-        : $"Verification failed: {validationResult.ErrorMessage}");
-}
-catch (Exception e)
-{
-    Console.WriteLine(e);
-    throw;
-}
+Presentation.PresentJWtVcFlow(issuer, issuerService, holder, verifierService);
 
 Log.CloseAndFlush();
