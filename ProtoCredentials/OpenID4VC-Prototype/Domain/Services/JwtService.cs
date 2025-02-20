@@ -8,8 +8,6 @@ namespace OpenID4VC_Prototype.Domain.Services;
 
 public class JwtService : IJwtService
 {
-    //private readonly RSA _privateKey = privateKey;
-
     public string CreateJwtVc(VerifiableCredential credential, string privateKey)
     {
         var rsa = RSA.Create();

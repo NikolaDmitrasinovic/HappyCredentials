@@ -31,7 +31,7 @@ public class VerifierService(ICryptoService cryptoService, IJwtService jwtServic
 
     public ValidationResult ValidateJwtCredential(string jwtVc, string publicKey)
     {
-        Log.Information($"Verifying credential for holder"); // todo: deserialize jwt to log information
+        Log.Information($"Verifying credential for holder");
 
         if (string.IsNullOrEmpty(jwtVc))
             return new ValidationResult(false, "Invalid token presented");
