@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography;
-using OpenID4VC_Prototype.Application.Models;
+﻿using OpenID4VC_Prototype.Application.Models;
 
 namespace OpenID4VC_Prototype.Application.Interfaces;
 

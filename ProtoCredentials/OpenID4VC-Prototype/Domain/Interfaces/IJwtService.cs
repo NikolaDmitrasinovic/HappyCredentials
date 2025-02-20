@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography;
-using OpenID4VC_Prototype.Domain.Models;
+﻿using OpenID4VC_Prototype.Domain.Models;
 
 namespace OpenID4VC_Prototype.Domain.Interfaces;
 public interface IJwtService
