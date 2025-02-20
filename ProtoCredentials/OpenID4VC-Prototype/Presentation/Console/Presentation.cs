@@ -8,7 +8,7 @@ namespace OpenID4VC_Prototype.Presentation.Console;
 
 public static class Presentation
 {
-    public static void PresentVcFlow(DecentralizedIdentifier issuer, IIssuerService issuerService, DecentralizedIdentifier holder, IVerifierService verifierService)
+    public static void ShowVcFlow(DecentralizedIdentifier issuer, IIssuerService issuerService, DecentralizedIdentifier holder, IVerifierService verifierService)
     {
         // Issuing a verifiable credential
         WriteTitle("Issuing verifiable credential");
@@ -49,7 +49,7 @@ public static class Presentation
         }
     }
 
-    public static void PresentJWtVcFlow(DecentralizedIdentifier issuer, IIssuerService issuerService, DecentralizedIdentifier holder, IVerifierService verifierService)
+    public static void ShowJwtVcFlow(DecentralizedIdentifier issuer, IIssuerService issuerService, DecentralizedIdentifier holder, IVerifierService verifierService)
     {
         // Issuing JWT verifiable credential
         WriteTitle("Issuing JWT credential");
