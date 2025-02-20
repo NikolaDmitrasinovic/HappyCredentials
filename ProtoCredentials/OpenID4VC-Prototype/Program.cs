@@ -46,6 +46,7 @@ Console.WriteLine($"Holder DID: {holder.DId}");
 Console.WriteLine($"Verifier DID: {verifier.DId}");
 
 Presentation.ShowVcFlow(issuer, issuerService, holder, verifierService);
+Console.WriteLine();
 Console.WriteLine("************************");
 Presentation.ShowJwtVcFlow(issuer, issuerService, holder, verifierService);
 
