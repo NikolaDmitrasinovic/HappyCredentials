@@ -82,7 +82,6 @@ public static class Presentation
 
     private static void WriteTitle(string title)
     {
-        System.Console.WriteLine();
-        System.Console.WriteLine("***" + title.ToUpper());
+        System.Console.WriteLine("/n***" + title.ToUpper());
     }
 }

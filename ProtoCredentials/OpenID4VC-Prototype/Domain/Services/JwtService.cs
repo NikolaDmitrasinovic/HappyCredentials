@@ -5,6 +5,7 @@ using OpenID4VC_Prototype.Domain.Interfaces;
 using OpenID4VC_Prototype.Domain.Models;
 
 namespace OpenID4VC_Prototype.Domain.Services;
+
 public class JwtService : IJwtService
 {
     //private readonly RSA _privateKey = privateKey;
