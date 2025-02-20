@@ -52,21 +52,20 @@ public static class Presentation
     public static void ShowJwtVcFlow(DecentralizedIdentifier issuer, IIssuerService issuerService, DecentralizedIdentifier holder, IVerifierService verifierService)
     {
         // Issuing JWT verifiable credential
-        WriteTitle("Issuing JWT credential");
-        string jwtCredential;
+        WriteTitle("Issuing verifiable credential via JWT");
+        var jwtCredential = string.Empty;
         try
         {
             var issuerDto = issuer.Adapt<DIdDto>();
             jwtCredential = issuerService.IssueJwtVc(issuerDto, holder.DId);
         }
-        catch (Exception e)
+        catch (Exception ex)
         {
-            System.Console.WriteLine(e);
-            throw;
+            Log.Fatal(ex, $"Unexpected error: {ex.Message}");
         }
 
         // Validating JWT credential
-        WriteTitle("Validating JWT credential");
+        WriteTitle("Verifier receives JWT and validates credential");
         try
         {
             var validationResult = verifierService.ValidateJwtVc(jwtCredential, issuer.PublicKey);
@@ -75,10 +74,9 @@ public static class Presentation
                 ? "Credential is valid!"
                 : $"Verification failed: {validationResult.ErrorMessage}");
         }
-        catch (Exception e)
+        catch (Exception ex)
         {
-            System.Console.WriteLine(e);
-            throw;
+            Log.Fatal(ex, $"Unexpected error: {ex.Message}");
         }
     }
 
