@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography;
-using Mapster;
+﻿using Mapster;
 using OpenID4VC_Prototype.Application.Interfaces;
 using OpenID4VC_Prototype.Application.Models;
 using OpenID4VC_Prototype.Domain.Interfaces;
@@ -32,6 +31,11 @@ public class VerifierService(ICryptoService cryptoService, IJwtService jwtServic
 
     public ValidationResult ValidateJwtVc(string jwtVc, string publicKey)
     {
+        Log.Information($"Verifying credential for holder"); // todo: deserialize jwt to log information
+
+        if (string.IsNullOrEmpty(jwtVc))
+            return new ValidationResult(false, "Invalid token presented");
+
         var isValid = jwtService.ValidateJwtVc(jwtVc, publicKey);
 
         return isValid
