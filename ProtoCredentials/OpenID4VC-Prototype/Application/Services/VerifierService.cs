@@ -29,14 +29,14 @@ public class VerifierService(ICryptoService cryptoService, IJwtService jwtServic
             : new ValidationResult(false, "Signature verification failed");
     }
 
-    public ValidationResult ValidateJwtCredential(string jwtVc, string publicKey)
+    public ValidationResult ValidateJwtCredential(string jwtVc, string publicKey, string holder, string issuer)
     {
-        Log.Information($"Verifying credential for holder");
+        Log.Information($"Verifying credential for holder DID: {holder}");
 
         if (string.IsNullOrEmpty(jwtVc))
             return new ValidationResult(false, "Invalid token presented");
 
-        var isValid = jwtService.ValidateJwtVc(jwtVc, publicKey);
+        var isValid = jwtService.ValidateJwtVc(jwtVc, publicKey, issuer);
 
         return isValid
             ? new ValidationResult(true)

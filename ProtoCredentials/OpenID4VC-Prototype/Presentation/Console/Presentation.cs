@@ -68,7 +68,7 @@ public static class Presentation
         WriteTitle("Verifier receives JWT and validates credential");
         try
         {
-            var validationResult = verifierService.ValidateJwtCredential(jwtCredential, issuer.PublicKey);
+            var validationResult = verifierService.ValidateJwtCredential(jwtCredential, issuer.PublicKey, holder.DId, issuer.DId);
 
             Log.Information(validationResult.IsValid
                 ? "Credential is valid!"

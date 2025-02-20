@@ -31,7 +31,7 @@ public class JwtService : IJwtService
         return handler.WriteToken(token);
     }
 
-    public bool ValidateJwtVc(string jwtVc, string publicKey)
+    public bool ValidateJwtVc(string jwtVc, string publicKey, string issuer)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
 
@@ -40,8 +40,8 @@ public class JwtService : IJwtService
 
         var validationParameters = new TokenValidationParameters
         {
-            ValidateIssuer = false,
-            ValidIssuer = "did:example:issuer",
+            ValidateIssuer = true,
+            ValidIssuer = issuer,
             ValidateAudience = false,
             ValidateLifetime = true,
             IssuerSigningKey = new RsaSecurityKey(rsa),
