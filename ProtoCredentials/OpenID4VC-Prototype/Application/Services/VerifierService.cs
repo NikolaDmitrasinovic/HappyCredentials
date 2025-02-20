@@ -29,7 +29,7 @@ public class VerifierService(ICryptoService cryptoService, IJwtService jwtServic
             : new ValidationResult(false, "Signature verification failed");
     }
 
-    public ValidationResult ValidateJwtVc(string jwtVc, string publicKey)
+    public ValidationResult ValidateJwtCredential(string jwtVc, string publicKey)
     {
         Log.Information($"Verifying credential for holder"); // todo: deserialize jwt to log information
 

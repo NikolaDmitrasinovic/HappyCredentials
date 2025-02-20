@@ -57,7 +57,7 @@ public static class Presentation
         try
         {
             var issuerDto = issuer.Adapt<DIdDto>();
-            jwtCredential = issuerService.IssueJwtVc(issuerDto, holder.DId);
+            jwtCredential = issuerService.IssueJwtCredential(issuerDto, holder.DId);
         }
         catch (Exception ex)
         {
@@ -68,7 +68,7 @@ public static class Presentation
         WriteTitle("Verifier receives JWT and validates credential");
         try
         {
-            var validationResult = verifierService.ValidateJwtVc(jwtCredential, issuer.PublicKey);
+            var validationResult = verifierService.ValidateJwtCredential(jwtCredential, issuer.PublicKey);
 
             Log.Information(validationResult.IsValid
                 ? "Credential is valid!"

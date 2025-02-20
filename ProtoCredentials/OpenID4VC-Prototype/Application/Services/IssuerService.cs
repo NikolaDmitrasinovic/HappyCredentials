@@ -34,7 +34,7 @@ public class IssuerService(ICryptoService cryptoService, IJwtService jwtService)
         return credential.Adapt<VCDto>();
     }
 
-    public string IssueJwtVc(DIdDto issuer, string holderDId)
+    public string IssueJwtCredential(DIdDto issuer, string holderDId)
     {
         Log.Information($"Issuing credential for holder DID: {holderDId}");
 
