@@ -49,11 +49,13 @@ public class IssuerService(ICryptoService cryptoService, IJwtService jwtService)
             Claims = new Dictionary<string, string>
             {
                 { "University", "PMF" },
-                { "Curriculum", "Mathematics" }
+                { "Curriculum", "Informatics" }
             }
         };
 
         credential.Signature = cryptoService.SignData(credential, issuer.PrivateKey);
+
+        Log.Information($"Issued credential: {credential.CredentialType} for {credential.HolderDId}");
 
         var jwcVc = jwtService.CreateJwtVc(credential, issuer.PrivateKey);
         return jwcVc;
