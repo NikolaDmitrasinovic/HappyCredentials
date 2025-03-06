@@ -8,7 +8,7 @@ namespace OpenID4VC_Prototype.Presentation.Console;
 
 public static class Presentation
 {
-    public static void PresentVCFlow(DecentralizedIdentifier issuer, IIssuerService issuerService, DecentralizedIdentifier holder, IVerifierService verifierService)
+    public static void ShowVcFlow(DecentralizedIdentifier issuer, IIssuerService issuerService, DecentralizedIdentifier holder, IVerifierService verifierService)
     {
         // Issuing a verifiable credential
         WriteTitle("Issuing verifiable credential");
@@ -49,9 +49,39 @@ public static class Presentation
         }
     }
 
-    static void WriteTitle(string title)
+    public static void ShowJwtVcFlow(DecentralizedIdentifier issuer, IIssuerService issuerService, DecentralizedIdentifier holder, IVerifierService verifierService)
     {
-        System.Console.WriteLine();
-        System.Console.WriteLine("***" + title.ToUpper());
+        // Issuing JWT verifiable credential
+        WriteTitle("Issuing verifiable credential via JWT");
+        var jwtCredential = string.Empty;
+        try
+        {
+            var issuerDto = issuer.Adapt<DIdDto>();
+            jwtCredential = issuerService.IssueJwtCredential(issuerDto, holder.DId);
+        }
+        catch (Exception ex)
+        {
+            Log.Fatal(ex, $"Unexpected error: {ex.Message}");
+        }
+
+        // Validating JWT credential
+        WriteTitle("Verifier receives JWT and validates credential");
+        try
+        {
+            var validationResult = verifierService.ValidateJwtCredential(jwtCredential, issuer.PublicKey);
+
+            Log.Information(validationResult.IsValid
+                ? "Credential is valid!"
+                : $"Verification failed: {validationResult.ErrorMessage}");
+        }
+        catch (Exception ex)
+        {
+            Log.Fatal(ex, $"Unexpected error: {ex.Message}");
+        }
+    }
+
+    private static void WriteTitle(string title)
+    {
+        System.Console.WriteLine("\n***" + title.ToUpper());
     }
 }

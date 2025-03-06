@@ -8,7 +8,7 @@ using Serilog;
 
 namespace OpenID4VC_Prototype.Application.Services;
 
-public class IssuerService(ICryptoService cryptoService) : IIssuerService
+public class IssuerService(ICryptoService cryptoService, IJwtService jwtService) : IIssuerService
 {
     public VCDto IssueCredential(DIdDto issuer, string holderDId)
     {
@@ -32,5 +32,32 @@ public class IssuerService(ICryptoService cryptoService) : IIssuerService
         credential.Signature = cryptoService.SignData(credential, issuer.PrivateKey);
 
         return credential.Adapt<VCDto>();
+    }
+
+    public string IssueJwtCredential(DIdDto issuer, string holderDId)
+    {
+        Log.Information($"Issuing credential for holder DID: {holderDId}");
+
+        if (!DIdValidators.IsValidDId(holderDId))
+            throw new ArgumentException($"Invalid holder DID: {holderDId}");
+
+        var credential = new VerifiableCredential
+        {
+            IssuerDId = issuer.DId,
+            HolderDId = holderDId,
+            CredentialType = "Diploma",
+            Claims = new Dictionary<string, string>
+            {
+                { "University", "PMF" },
+                { "Curriculum", "Informatics" }
+            }
+        };
+
+        credential.Signature = cryptoService.SignData(credential, issuer.PrivateKey);
+
+        Log.Information($"Issued credential: {credential.CredentialType} for {credential.HolderDId}");
+
+        var jwcVc = jwtService.CreateJwtVc(credential, issuer.PrivateKey);
+        return jwcVc;
     }
 }

@@ -28,6 +28,7 @@ var builder = Host.CreateDefaultBuilder(args)
         services.AddScoped<IIssuerService, IssuerService>();
         services.AddScoped<IVerifierService, VerifierService>();
         services.AddSingleton<DIdService>();
+        services.AddScoped<IJwtService, JwtService>();
     }).Build();
 
 using var scope = builder.Services.CreateScope();
@@ -44,6 +45,8 @@ Console.WriteLine($"Issuer DID: {issuer.DId}");
 Console.WriteLine($"Holder DID: {holder.DId}");
 Console.WriteLine($"Verifier DID: {verifier.DId}");
 
-Presentation.PresentVCFlow(issuer, issuerService, holder, verifierService);
+Presentation.ShowVcFlow(issuer, issuerService, holder, verifierService);
+Console.WriteLine("\n===================");
+Presentation.ShowJwtVcFlow(issuer, issuerService, holder, verifierService);
 
 Log.CloseAndFlush();

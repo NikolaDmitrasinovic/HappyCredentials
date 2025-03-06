@@ -1,4 +1,5 @@
 ﻿using Mapster;
+using Microsoft.IdentityModel.JsonWebTokens;
 using OpenID4VC_Prototype.Application.Interfaces;
 using OpenID4VC_Prototype.Application.Models;
 using OpenID4VC_Prototype.Domain.Interfaces;
@@ -8,7 +9,7 @@ using Serilog;
 
 namespace OpenID4VC_Prototype.Application.Services;
 
-public class VerifierService(ICryptoService cryptoService) : IVerifierService
+public class VerifierService(ICryptoService cryptoService, IJwtService jwtService) : IVerifierService
 {
     public ValidationResult ValidateCredential(VCDto credential, string issuerPublicKey)
     {
@@ -23,6 +24,24 @@ public class VerifierService(ICryptoService cryptoService) : IVerifierService
             return new ValidationResult(false, "Issuer public key is missing");
 
         var isValid = cryptoService.VerifySignature(domainCredential, issuerPublicKey);
+
+        return isValid
+            ? new ValidationResult(true)
+            : new ValidationResult(false, "Signature verification failed");
+    }
+
+    public ValidationResult ValidateJwtCredential(string jwtVc, string publicKey)
+    {
+        var handler = new JsonWebTokenHandler();
+        var token = handler.ReadJsonWebToken(jwtVc);
+        var holder = token.Claims.ToList()[0];
+
+        Log.Information($"Verifying credential for holder: {holder}");
+
+        if (string.IsNullOrEmpty(jwtVc))
+            return new ValidationResult(false, "Invalid token presented");
+
+        var isValid = jwtService.ValidateJwtVc(jwtVc, publicKey);
 
         return isValid
             ? new ValidationResult(true)
