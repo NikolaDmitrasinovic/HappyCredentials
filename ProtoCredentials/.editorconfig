@@ -56,4 +56,4 @@ dotnet_naming_style.camel_case.capitalization = camel_case
 # Organizing usings #
 #############################
 dotnet_sort_system_directives_first = true
-dotnet_separate_import_directive_groups = true
+dotnet_separate_import_directive_groups = false
