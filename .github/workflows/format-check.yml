@@ -1,0 +1,26 @@
+name: Check Code Format
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  format-check:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '9.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore ProtoCredentials/ProtoCredentials.sln
+
+    - name: Check formatting
+      run: dotnet format ProtoCredentials/ProtoCredentials.sln --verify-no-changes --severity error
